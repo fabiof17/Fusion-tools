@@ -2,11 +2,16 @@
 	Tools = ordered() {
 		PxF_Bandpass = MacroOperator {
 			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter4",
+					Source = "Input",
+					Name = "Img",
+				},
 				Input1 = InstanceInput {
-					SourceOp = "Blur2",
-					Source = "XBlurSize",
-					Name = "Blur Amount 2",
-					Default = 2,
+					SourceOp = "Switch",
+					Source = "Switch",
+					Name = "Colorspace",
+					Default = 0,
 				},
 				Input2 = InstanceInput {
 					SourceOp = "Blur1",
@@ -14,23 +19,23 @@
 					Name = "Blur Amount 1",
 					Default = 0,
 				},
-				MainInput1 = InstanceInput {
-					SourceOp = "PipeRouter1",
-					Source = "Input",
-					Name = "Img",
-				},
 				Input3 = InstanceInput {
+					SourceOp = "Blur2",
+					Source = "XBlurSize",
+					Name = "Blur Amount 2",
+					Default = 2,
+				},
+				Input4 = InstanceInput {
 					SourceOp = "ColorGain",
 					Source = "GainRed",
 					Default = 5,
 				},
-				Input4 = InstanceInput {
+				Input5 = InstanceInput {
 					SourceOp = "ColorGain",
 					Source = "SaturationRed",
-					MaxScale = 4,
 					Default = 0,
 				},
-				Input5 = InstanceInput {
+				Input6 = InstanceInput {
 					SourceOp = "ColorGain",
 					Source = "LiftRed",
 					Name = "Offset Darks",
@@ -39,66 +44,20 @@
 			},
 			Outputs = {
 				MainOutput1 = InstanceOutput {
-					SourceOp = "ColorGain",
+					SourceOp = "ChannelBooleans1",
 					Source = "Output",
 				}
 			},
 			ViewInfo = GroupInfo { Pos = { 0, 0 } },
 			Tools = ordered() {
-				CineonLog = CineonLog {
-					CtrlWZoom = false,
-					NameSet = true,
+				PipeRouter3 = PipeRouter {
 					Inputs = {
-						Depth = Input { Value = 1, },
-						Mode = Input { Value = 1, },
-						SLogVersion = Input { Value = FuID { "SLog2" }, },
 						Input = Input {
-							SourceOp = "PipeRouter1",
+							SourceOp = "PipeRouter4",
 							Source = "Output",
 						},
 					},
-					ViewInfo = OperatorInfo { Pos = { 110, 247.5 } },
-				},
-				Switch = Dissolve {
-					Transitions = {
-						[0] = "DFTDissolve"
-					},
-					NameSet = true,
-					Inputs = {
-						Background = Input {
-							SourceOp = "PipeRouter1",
-							Source = "Output",
-						},
-						Foreground = Input {
-							SourceOp = "CineonLog",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 0, 379.5 } },
-					UserControls = ordered() {
-						Switch = {
-							LINKS_Name = "Switch",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "ComboControl",
-							INP_Integer = false,
-							{ CCS_AddString = "Linear" },
-							{ CCS_AddString = "Cineon" },
-							CC_LabelPosition = "Horizontal",
-							INP_External = false,
-						}
-					}
-				},
-				Blur2 = Blur {
-					NameSet = true,
-					Inputs = {
-						Alpha = Input { Value = 0, },
-						XBlurSize = Input { Value = 2, },
-						Input = Input {
-							SourceOp = "Switch",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 110, 544.5 } },
+					ViewInfo = PipeRouterInfo { Pos = { -273.461, 142.733 } },
 				},
 				Blur1 = Blur {
 					Inputs = {
@@ -112,7 +71,49 @@
 					ViewInfo = OperatorInfo { Pos = { -110, 544.5 } },
 				},
 				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
 					ViewInfo = PipeRouterInfo { Pos = { -110, 247.5 } },
+				},
+				PipeRouter4 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { -110, 148.5 } },
+				},
+				Switch = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "Switch",
+						},
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "CineonLog",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 379.5 } },
+					UserControls = ordered() {
+						Switch = {
+							{ CCS_AddString = "Linear" },
+							{ CCS_AddString = "Cineon" },
+							INP_Integer = false,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							CC_LabelPosition = "Horizontal",
+							INPID_InputControl = "ComboControl",
+							LINKS_Name = "Switch",
+						}
+					}
 				},
 				ChannelBooleans_Minus = ChannelBoolean {
 					NameSet = true,
@@ -164,6 +165,57 @@
 						},
 					},
 					ViewInfo = OperatorInfo { Pos = { 0, 742.5 } },
+				},
+				Blur2 = Blur {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						XBlurSize = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "Switch",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 544.5 } },
+				},
+				CineonLog = CineonLog {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Depth = Input { Value = 1, },
+						Mode = Input { Value = 1, },
+						SLogVersion = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 247.5 } },
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "ColorGain",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 907.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -237.867, 904.135 } },
 				}
 			},
 		}
