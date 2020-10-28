@@ -1,0 +1,146 @@
+{
+	Tools = ordered() {
+		MacroTool1 = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter2",
+					Source = "Input",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Switch",
+					Source = "Switch",
+					Name = "Operation",
+					Default = 0,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Switch",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 0, 115.5 } },
+				},
+				Linear_HLS = ColorSpace {
+					NameSet = true,
+					Inputs = {
+						ColorSpaceConversion = Input { Value = 1, },
+						ColorType = Input { Value = 4, },
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 313.5 } },
+				},
+				HLS_HSL = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 7, },
+						ToBlue = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "Linear_HLS",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 346.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { 260.877, 115.727 } },
+				},
+				LINEAR_HSL = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { -2.73773, 250.121 },
+						Size = { 445.427, 150.323 }
+					},
+				},
+				Switch = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "Switch",
+						},
+						Background = Input {
+							SourceOp = "HLS_HSL",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "HSL_Linear",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 275, 478.5 } },
+					UserControls = ordered() {
+						Switch = {
+							LINKS_Name = "Switch",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ComboControl",
+							INP_Integer = false,
+							{ CCS_AddString = "Linear to HSL" },
+							{ CCS_AddString = "HSL to Linear" },
+							CC_LabelPosition = "Horizontal",
+						}
+					}
+				},
+				HSL_HLS = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 7, },
+						ToBlue = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 313.5 } },
+				},
+				HSL_Linear = ColorSpace {
+					NameSet = true,
+					Inputs = {
+						ColorSpaceConversion = Input { Value = 2, },
+						ColorType = Input { Value = 4, },
+						Input = Input {
+							SourceOp = "HSL_HLS",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 346.5 } },
+				},
+				PipeRouter3 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 550, 115.5 } },
+				},
+				HSL_LINEAR_1 = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { 550, 247.5 },
+						Size = { 445.427, 150.323 }
+					},
+				}
+			},
+		}
+	},
+	ActiveTool = "MacroTool1"
+}

@@ -1,0 +1,172 @@
+{
+	Tools = ordered() {
+		PxF_Bandpass = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "Blur2",
+					Source = "XBlurSize",
+					Name = "Blur Amount 2",
+					Default = 2,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Blur1",
+					Source = "XBlurSize",
+					Name = "Blur Amount 1",
+					Default = 0,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "PipeRouter1",
+					Source = "Input",
+					Name = "Img",
+				},
+				Input3 = InstanceInput {
+					SourceOp = "ColorGain",
+					Source = "GainRed",
+					Default = 5,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "ColorGain",
+					Source = "SaturationRed",
+					MaxScale = 4,
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "ColorGain",
+					Source = "LiftRed",
+					Name = "Offset Darks",
+					Default = 0.5,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "ColorGain",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				CineonLog = CineonLog {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Depth = Input { Value = 1, },
+						Mode = Input { Value = 1, },
+						SLogVersion = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 247.5 } },
+				},
+				Switch = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "CineonLog",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 379.5 } },
+					UserControls = ordered() {
+						Switch = {
+							LINKS_Name = "Switch",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ComboControl",
+							INP_Integer = false,
+							{ CCS_AddString = "Linear" },
+							{ CCS_AddString = "Cineon" },
+							CC_LabelPosition = "Horizontal",
+							INP_External = false,
+						}
+					}
+				},
+				Blur2 = Blur {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						XBlurSize = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "Switch",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 544.5 } },
+				},
+				Blur1 = Blur {
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						XBlurSize = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "Switch",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 544.5 } },
+				},
+				PipeRouter1 = PipeRouter {
+					ViewInfo = PipeRouterInfo { Pos = { -110, 247.5 } },
+				},
+				ChannelBooleans_Minus = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "Blur2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 643.5 } },
+				},
+				ColorGain = ColorGain {
+					NameSet = true,
+					Inputs = {
+						LockRGB = Input { Value = 1, },
+						GainRed = Input { Value = 5, },
+						LiftRed = Input { Value = 0.5, },
+						SaturationRed = Input { Value = 0, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.125, 0.75 },
+											{ 0.375, 0.25 },
+											{ 0.5, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0.5, 0 },
+											{ 0.625, 0.25 },
+											{ 0.875, 0.75 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						Input = Input {
+							SourceOp = "ChannelBooleans_Minus",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 0, 742.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "PxF_Bandpass"
+}
