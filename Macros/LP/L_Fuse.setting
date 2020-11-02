@@ -1,0 +1,2060 @@
+{
+	Tools = ordered() {
+		L_Fuse = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Bg",
+					Source = "Input",
+					Name = "Bg",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Fg",
+					Source = "Input",
+					Name = "Fg",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "FlareAmount",
+					Source = "LightFlare",
+					Name = "LIGHT FLARE",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "FlareAmount",
+					Source = "Gain",
+					Name = "Amount",
+					Default = 0.335,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "BlurFlare_2_2",
+					Source = "XBlurSize",
+					Name = "Size",
+					Default = 2,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "KeyFlare",
+					Source = "Low",
+					ControlGroup = 11,
+					Default = 0.1,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "KeyFlare",
+					Source = "High",
+					ControlGroup = 11,
+					Default = 0.6,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "Multiply1",
+					Source = "NumberIn1",
+					Name = "Mult",
+					ControlGroup = 12,
+					Default = 1,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "Multiply1",
+					Source = "NumberIn2",
+					Name = "Mult",
+					ControlGroup = 12,
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "Multiply1",
+					Source = "NumberIn3",
+					Name = "Mult",
+					ControlGroup = 12,
+					Default = 1,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "GradeBgWrapAmount",
+					Source = "WrapAll",
+					Name = "WRAP ALL",
+					Default = 0,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "GradeBgWrapAmount",
+					Source = "Gain",
+					Name = "Amount",
+					Default = 0.345,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "BlurBgWrapSize_5_5",
+					Source = "XBlurSize",
+					Name = "Size",
+					Default = 5,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "Multiply2",
+					Source = "NumberIn1",
+					Name = "Mult",
+					ControlGroup = 7,
+					Default = 1,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "Multiply2",
+					Source = "NumberIn2",
+					Name = "Mult",
+					ControlGroup = 7,
+					Default = 1,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "Multiply2",
+					Source = "NumberIn3",
+					Name = "Mult",
+					ControlGroup = 7,
+					Default = 1,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "BleedColor",
+					Source = "BleedColor",
+					Name = "BLEED COLOR",
+					Default = 0,
+				},
+
+				Input16 = InstanceInput {
+					SourceOp = "BleedColor",
+					Source = "Blend",
+					Name = "Amount",
+					Default = 0.3,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "Icolor_5__5",
+					Source = "XBlurSize",
+					Name = "Size",
+					Default = 5,
+				},
+				Input18 = InstanceInput {
+					SourceOp = "Multiply3",
+					Source = "NumberIn1",
+					Name = "Mult",
+					ControlGroup = 5,
+					Default = 1,
+				},
+				Input19 = InstanceInput {
+					SourceOp = "Multiply3",
+					Source = "NumberIn2",
+					Name = "Mult",
+					ControlGroup = 5,
+					Default = 1,
+				},
+				Input20 = InstanceInput {
+					SourceOp = "Multiply3",
+					Source = "NumberIn3",
+					Name = "Mult",
+					ControlGroup = 5,
+					Default = 1,
+				},
+				Input21 = InstanceInput {
+					SourceOp = "EdgeBlur",
+					Source = "EdgeBlur",
+					Name = "EDGE BLUR",
+					Default = 0,
+				},
+				Input22 = InstanceInput {
+					SourceOp = "EdgeBlur",
+					Source = "XBlurSize",
+					Name = "Amount",
+					Default = 2,
+				},
+				Input23 = InstanceInput {
+					SourceOp = "Dissolve1",
+					Source = "ApplyLog",
+					Name = "Apply operations in Log",
+					Default = 0,
+				},
+				Input24 = InstanceInput {
+					SourceOp = "OverAllMix",
+					Source = "Mix",
+					Name = "Mix",
+					Default = 1,
+				},
+				Input25 = InstanceInput {
+					SourceOp = "RegularOver",
+					Source = "RegularOver",
+					Name = "Regular Over",
+					Default = 0,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "OverallMix_1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Dissolve1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "ApplyLog",
+						},
+						Background = Input {
+							SourceOp = "Fg",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter13",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -2035, -49.5 } },
+					UserControls = ordered() {
+						ApplyLog = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "ApplyLog",
+						}
+					}
+				},
+				Fg = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { -2035, -511.5 } },
+				},
+				PipeRouter6 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Dissolve1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -2035, 478.5 } },
+				},
+				PipeRouter19 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter6",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -2585, 478.5 } },
+				},
+				AlphaMultiply1_1 = AlphaMultiply {
+					Inputs = {
+						Input = Input {
+							SourceOp = "CineonLog1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1815, -445.5 } },
+				},
+				CineonLog1 = CineonLog {
+					Inputs = {
+						Depth = Input { Value = 1, },
+						SLogVersion = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "AlphaDivide2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1815, -478.5 } },
+				},
+				AlphaDivide2 = AlphaDivide {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Fg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1815, -511.5 } },
+				},
+				PipeRouter13 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "AlphaMultiply1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -1815, -49.5 } },
+				},
+				Unpremult1 = AlphaDivide {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter6",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -2035, 841.5 } },
+				},
+				PipeRouter11 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Unpremult1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -2310, 841.5 } },
+				},
+				PipeRouter8 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Unpremult1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -1540, 841.5 } },
+				},
+				Icolor_10_10 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 4,
+							Expression = "Icolor_5__5.XBlurSize*2",
+						},
+						YBlurSize = Input {
+							Value = 4,
+							Expression = "Icolor_5__5.YBlurSize*2",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -825, 1270.5 } },
+				},
+				Icolor_5__5 = Blur {
+					NameSet = true,
+					Inputs = {
+						XBlurSize = Input { Value = 5, },
+						YBlurSize = Input { Value = 5, },
+						Input = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -990, 1270.5 } },
+				},
+				Merge1_4 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Icolor_10_10",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Icolor_5__5",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -935, 1369.5 } },
+				},
+				Icolor_20_20 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 8,
+							Expression = "Icolor_5__5.XBlurSize*4",
+						},
+						YBlurSize = Input {
+							Value = 8,
+							Expression = "Icolor_5__5.YBlurSize*4",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, 1270.5 } },
+				},
+				Merge1_1_2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Icolor_20_20",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge1_4",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -825, 1468.5 } },
+				},
+				BlurFlare_40_40 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 16,
+							Expression = "Icolor_5__5.XBlurSize*8",
+						},
+						YBlurSize = Input {
+							Value = 16,
+							Expression = "Icolor_5__5.YBlurSize*8",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -495, 1270.5 } },
+				},
+				Merge1_2_2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BlurFlare_40_40",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge1_1_2",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -715, 1567.5 } },
+				},
+				Saturation = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Saturation = Input { Value = 0.7, },
+						Input = Input {
+							SourceOp = "PipeRouter8",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1540, 1567.5 } },
+				},
+				CustomTool2 = Custom {
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "CustomTool2LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool2LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool2LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool2LUTIn4",
+							Source = "Value",
+						},
+						Intermediate1 = Input { Value = "getr1b(x,y)", },
+						Intermediate2 = Input { Value = "getg1b(x,y)", },
+						Intermediate3 = Input { Value = "getb1b(x,y)", },
+						RedExpression = Input { Value = "(1/(I1*.3+I2*.59+I3*.11))*I1", },
+						GreenExpression = Input { Value = "(1/(I1*.3+I2*.59+I3*.11))*I2", },
+						BlueExpression = Input { Value = "(1/(I1*.3+I2*.59+I3*.11))*I3", },
+						Image1 = Input {
+							SourceOp = "CustomTool1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1210, 1666.5 } },
+				},
+				CustomTool2LUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				CustomTool2LUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				CustomTool2LUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				CustomTool2LUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				BleedColor = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Value = 0.3, },
+						Operation = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "Saturation",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "CustomTool2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1540, 1666.5 } },
+					UserControls = ordered() {
+						BleedColor = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "BleedColor",
+						}
+					}
+				},
+				clamp1 = MacroOperator {
+					Inputs = ordered() {
+						MainInput1 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "Image1",
+						},
+						Input2 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "NumberIn1",
+							Name = "Clamp High",
+							Default = 1,
+						},
+						Input3 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "NumberIn2",
+							Name = "Clamp Low",
+							Default = 0,
+						},
+						Input4 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "Blend",
+							Default = 1,
+						},
+						Input5 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessWhenBlendIs00",
+							Default = 0,
+						},
+						Input6 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessRed",
+							Name = "Red",
+							Default = 1,
+						},
+						Input7 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessGreen",
+							Name = "Green",
+							Default = 1,
+						},
+						Input8 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessBlue",
+							Name = "Blue",
+							Default = 1,
+						},
+						Input9 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessAlpha",
+							Name = "Alpha",
+							Default = 1,
+						},
+						Input10 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ApplyMaskInverted",
+							Default = 0,
+						},
+						Input11 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MultiplyByMask",
+							Default = 0,
+						},
+						Input12 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "FitMask",
+						},
+						Input13 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskChannel",
+							Default = 3,
+						},
+						Input14 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskHigh",
+							ControlGroup = 15,
+							Default = 1,
+						},
+						Input15 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskLow",
+							ControlGroup = 15,
+							Default = 0,
+						},
+						Input16 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskClipBlack",
+							Default = 1,
+						},
+						Input17 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskClipWhite",
+							Default = 1,
+						},
+						Input18 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "UseObject",
+							Default = 0,
+						},
+						Input19 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "UseMaterial",
+							Default = 0,
+						},
+						Input20 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "CorrectEdges",
+						},
+						Input21 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ObjectID",
+							Name = "Object / Material",
+							ControlGroup = 21,
+							Default = 0,
+						},
+						Input22 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaterialID",
+							Name = "Object / Material",
+							ControlGroup = 21,
+							Default = 0,
+						},
+						Input23 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MotionBlur",
+							Default = 0,
+						},
+						Input24 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "Quality",
+							Default = 2,
+						},
+						Input25 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ShutterAngle",
+							Default = 180,
+						},
+						Input26 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "CenterBias",
+							Default = 0,
+						},
+						Input27 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "SampleSpread",
+							Default = 1,
+						},
+						Input1 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "EffectMask",
+						}
+					},
+					Outputs = {
+						MainOutput1 = InstanceOutput {
+							SourceOp = "CustomTool1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo { Pos = { -715, 1666.5 } },
+					Tools = ordered() {
+						CustomTool1_1 = Custom {
+							CtrlWZoom = false,
+							CtrlWShown = false,
+							Inputs = {
+								NumberIn1 = Input { Value = 100, },
+								NumberIn2 = Input { Value = 0.001, },
+								LUTIn1 = Input {
+									SourceOp = "CustomTool1LUTIn1_1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "CustomTool1LUTIn2_1",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "CustomTool1LUTIn3_1",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "CustomTool1LUTIn4_1",
+									Source = "Value",
+								},
+								RedExpression = Input { Value = "if(r1>n1,n1,if(r1<n2,n2,r1))", },
+								GreenExpression = Input { Value = "if(g1>n1,n1,if(g1<n2,n2,g1))", },
+								BlueExpression = Input { Value = "if(b1>n1,n1,if(b1<n2,n2,b1))", },
+								AlphaExpression = Input { Value = "if(a1>n1,n1,if(a1<n2,n2,a1))", },
+								Image1 = Input {
+									SourceOp = "Merge1_2_2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 0, 10.15 } },
+						},
+						CustomTool1LUTIn1_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 0, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CustomTool1LUTIn2_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 204, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CustomTool1LUTIn3_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 0, Blue = 204 },
+							CtrlWShown = false,
+						},
+						CustomTool1LUTIn4_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWShown = false,
+						}
+					},
+				},
+				Multiply3 = Custom {
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "Multiply3LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "Multiply3LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "Multiply3LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "Multiply3LUTIn4",
+							Source = "Value",
+						},
+						Setup1 = Input { Value = "n1", },
+						Setup2 = Input { Value = "n2", },
+						Setup3 = Input { Value = "n3", },
+						Intermediate1 = Input { Value = "getr1b(x,y)", },
+						Intermediate2 = Input { Value = "getg1b(x,y)", },
+						Intermediate3 = Input { Value = "getb1b(x,y)", },
+						RedExpression = Input { Value = "I1*n1", },
+						GreenExpression = Input { Value = "I2*n2", },
+						BlueExpression = Input { Value = "I3*n3", },
+						NumberControls = Input { Value = 1, },
+						ShowNumber4 = Input { Value = 0, },
+						ShowNumber5 = Input { Value = 0, },
+						ShowNumber6 = Input { Value = 0, },
+						ShowNumber7 = Input { Value = 0, },
+						ShowNumber8 = Input { Value = 0, },
+						PointControls = Input { Value = 1, },
+						ShowPoint1 = Input { Value = 0, },
+						ShowPoint2 = Input { Value = 0, },
+						ShowPoint3 = Input { Value = 0, },
+						ShowPoint4 = Input { Value = 0, },
+						LUTControls = Input { Value = 1, },
+						ShowLUT1 = Input { Value = 0, },
+						ShowLUT2 = Input { Value = 0, },
+						ShowLUT3 = Input { Value = 0, },
+						ShowLUT4 = Input { Value = 0, },
+						Image1 = Input {
+							SourceOp = "BleedColor",
+							Source = "Output",
+						},
+						NumberIn1 = Input { Value = 1, },
+						NumberIn2 = Input { Value = 1, },
+						NumberIn3 = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -1540, 1765.5 } },
+					UserControls = ordered() {
+						NumberIn1 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							CLRC_ShowWheel = true,
+							LINKS_Name = "Number In 1",
+						},
+						NumberIn2 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 1,
+							CLRC_ShowWheel = true,
+							LINKS_Name = "Number In 2",
+						},
+						NumberIn3 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							CLRC_ShowWheel = true,
+							LINKS_Name = "Number In 3",
+						}
+					}
+				},
+				Multiply3LUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				Multiply3LUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				Multiply3LUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				Multiply3LUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				Merge1_1_1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BlurBgWrapSize_20_20",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge1_3",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 55, 1468.5 } },
+				},
+				BlurBgWrapSize_5_5 = Blur {
+					NameSet = true,
+					Inputs = {
+						XBlurSize = Input { Value = 5, },
+						YBlurSize = Input { Value = 5, },
+						Input = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 1270.5 } },
+				},
+				BlurBgWrapSize_10_10 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 10,
+							Expression = "BlurBgWrapSize_5_5.XBlurSize*2",
+						},
+						YBlurSize = Input {
+							Value = 10,
+							Expression = "BlurBgWrapSize_5_5.YBlurSize*2",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 55, 1270.5 } },
+				},
+				ChannelBooleans2 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						ToAlpha = Input { Value = 16, },
+						Background = Input {
+							SourceOp = "Multiply3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1540, 1864.5 } },
+				},
+				Keymix = Merge {
+					NameSet = true,
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "Unpremult1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "ChannelBooleans2",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+						EffectMask = Input {
+							SourceOp = "PipeRouter9",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { -1980, 1996.5 } },
+				},
+				Merge1_3 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BlurBgWrapSize_10_10",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BlurBgWrapSize_5_5",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -55, 1369.5 } },
+				},
+				PipeRouter9 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "CustomTool1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -770, 1996.5 } },
+				},
+				Merge1_2_1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BlurBgWrapSize_40_40",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge1_1_1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 1567.5 } },
+				},
+				Multiply2 = Custom {
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "Multiply2LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "Multiply2LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "Multiply2LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "Multiply2LUTIn4",
+							Source = "Value",
+						},
+						Setup1 = Input { Value = "n1", },
+						Setup2 = Input { Value = "n2", },
+						Setup3 = Input { Value = "n3", },
+						Intermediate1 = Input { Value = "getr1b(x,y)", },
+						Intermediate2 = Input { Value = "getg1b(x,y)", },
+						Intermediate3 = Input { Value = "getb1b(x,y)", },
+						RedExpression = Input { Value = "I1*n1", },
+						GreenExpression = Input { Value = "I2*n2", },
+						BlueExpression = Input { Value = "I3*n3", },
+						NumberControls = Input { Value = 1, },
+						ShowNumber4 = Input { Value = 0, },
+						ShowNumber5 = Input { Value = 0, },
+						ShowNumber6 = Input { Value = 0, },
+						ShowNumber7 = Input { Value = 0, },
+						ShowNumber8 = Input { Value = 0, },
+						PointControls = Input { Value = 1, },
+						ShowPoint1 = Input { Value = 0, },
+						ShowPoint2 = Input { Value = 0, },
+						ShowPoint3 = Input { Value = 0, },
+						ShowPoint4 = Input { Value = 0, },
+						LUTControls = Input { Value = 1, },
+						ShowLUT1 = Input { Value = 0, },
+						ShowLUT2 = Input { Value = 0, },
+						ShowLUT3 = Input { Value = 0, },
+						ShowLUT4 = Input { Value = 0, },
+						Image1 = Input {
+							SourceOp = "Merge1_2_1",
+							Source = "Output",
+						},
+						NumberIn1 = Input { Value = 1, },
+						NumberIn2 = Input { Value = 1, },
+						NumberIn3 = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 1831.5 } },
+					UserControls = ordered() {
+						NumberIn1 = {
+							LINKS_Name = "Mult",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ColorControl",
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							INP_MinAllowed = -1000000,
+							INP_MaxAllowed = 1000000,
+							IC_ControlGroup = 1,
+							IC_ControlID = 0,
+							CLRC_ColorSpace = "HSV",
+							CLRC_ShowWheel = true,
+						},
+						NumberIn2 = {
+							LINKS_Name = "Mult",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ColorControl",
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							INP_MinAllowed = -1000000,
+							INP_MaxAllowed = 1000000,
+							IC_ControlGroup = 1,
+							IC_ControlID = 1,
+							CLRC_ColorSpace = "HSV",
+							CLRC_ShowWheel = true,
+						},
+						NumberIn3 = {
+							LINKS_Name = "Mult",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ColorControl",
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							INP_MinAllowed = -1000000,
+							INP_MaxAllowed = 1000000,
+							IC_ControlGroup = 1,
+							IC_ControlID = 2,
+							CLRC_ColorSpace = "HSV",
+							CLRC_ShowWheel = true,
+						}
+					}
+				},
+				Multiply2LUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				Multiply2LUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				Multiply2LUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				Multiply2LUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				GradeBgWrapAmount = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 1, },
+						Gain = Input { Value = 0.345, },
+						Input = Input {
+							SourceOp = "Multiply2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 165, 1897.5 } },
+					UserControls = ordered() {
+						WrapAll = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "WrapAll",
+						}
+					}
+				},
+				invert1 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 10, },
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "CopyAlpha1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 544.5 } },
+				},
+				CopyAlpha1 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "PipeRouter5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter6",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 478.5 } },
+				},
+				Premult1 = AlphaMultiply {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "invert1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 610.5 } },
+				},
+				PipeRouter5 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 110, 181.5 } },
+				},
+				PipeRouter7 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Premult1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 117.78, 1033.98 } },
+				},
+				Merge2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Keymix",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter10",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -1980, 2194.5 } },
+				},
+				BlurBgWrapSize_40_40 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 40,
+							Expression = "BlurBgWrapSize_5_5.XBlurSize*8",
+						},
+						YBlurSize = Input {
+							Value = 40,
+							Expression = "BlurBgWrapSize_5_5.YBlurSize*8",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, 1270.5 } },
+				},
+				BlurBgWrapSize_20_20 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 20,
+							Expression = "BlurBgWrapSize_5_5.XBlurSize*4",
+						},
+						YBlurSize = Input {
+							Value = 20,
+							Expression = "BlurBgWrapSize_5_5.YBlurSize*4",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 1270.5 } },
+				},
+				PipeRouter10 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "GradeBgWrapAmount",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 165, 2194.5 } },
+				},
+				Merge2_1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter10_1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -1980, 2425.5 } },
+				},
+				BlurFlare_2_2 = Blur {
+					NameSet = true,
+					Inputs = {
+						XBlurSize = Input { Value = 2, },
+						YBlurSize = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 770, 1270.5 } },
+				},
+				ChannelBooleans3 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Merge2_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter12",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1980, 2656.5 } },
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BlurFlare_4_4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BlurFlare_2_2",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 825, 1369.5 } },
+				},
+				PipeRouter12 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter11",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -2310, 2656.5 } },
+				},
+				KeyFlare = LumaKeyer {
+					NameSet = true,
+					Inputs = {
+						High = Input { Value = 0.6, },
+						Low = Input { Value = 0.1, },
+						PostMultiplyImage = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 610.5 } },
+				},
+				BlurFlare_4_4 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 4,
+							Expression = "BlurFlare_2_2.XBlurSize*2",
+						},
+						YBlurSize = Input {
+							Value = 4,
+							Expression = "BlurFlare_2_2.YBlurSize*2",
+						},
+						Input = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 935, 1270.5 } },
+				},
+				Merge1_1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BlurFlare_8_8",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 935, 1468.5 } },
+				},
+				Multiply1 = Custom {
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "Multiply1LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "Multiply1LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "Multiply1LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "Multiply1LUTIn4",
+							Source = "Value",
+						},
+						Setup1 = Input { Value = "n1", },
+						Setup2 = Input { Value = "n2", },
+						Setup3 = Input { Value = "n3", },
+						Intermediate1 = Input { Value = "getr1b(x,y)", },
+						Intermediate2 = Input { Value = "getg1b(x,y)", },
+						Intermediate3 = Input { Value = "getb1b(x,y)", },
+						RedExpression = Input { Value = "I1*n1", },
+						GreenExpression = Input { Value = "I2*n2", },
+						BlueExpression = Input { Value = "I3*n3", },
+						NumberControls = Input { Value = 1, },
+						ShowNumber4 = Input { Value = 0, },
+						ShowNumber5 = Input { Value = 0, },
+						ShowNumber6 = Input { Value = 0, },
+						ShowNumber7 = Input { Value = 0, },
+						ShowNumber8 = Input { Value = 0, },
+						PointControls = Input { Value = 1, },
+						ShowPoint1 = Input { Value = 0, },
+						ShowPoint2 = Input { Value = 0, },
+						ShowPoint3 = Input { Value = 0, },
+						ShowPoint4 = Input { Value = 0, },
+						LUTControls = Input { Value = 1, },
+						ShowLUT1 = Input { Value = 0, },
+						ShowLUT2 = Input { Value = 0, },
+						ShowLUT3 = Input { Value = 0, },
+						ShowLUT4 = Input { Value = 0, },
+						Image1 = Input {
+							SourceOp = "Merge1_2",
+							Source = "Output",
+						},
+						NumberIn1 = Input { Value = 1, },
+						NumberIn2 = Input { Value = 1, },
+						NumberIn3 = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 1831.5 } },
+					UserControls = ordered() {
+						NumberIn1 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 0,
+							CLRC_ShowWheel = true,
+							LINKS_Name = "Number In 1",
+						},
+						NumberIn2 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 1,
+							CLRC_ShowWheel = true,
+							LINKS_Name = "Number In 2",
+						},
+						NumberIn3 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ColorControl",
+							CLRC_ColorSpace = "HSV",
+							INP_MaxScale = 1,
+							IC_ControlGroup = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							CLRC_ShowWheel = true,
+							LINKS_Name = "Number In 3",
+						}
+					}
+				},
+				Multiply1LUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				Multiply1LUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				Multiply1LUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				Multiply1LUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				CustomTool1 = Custom {
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "CustomTool1LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool1LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool1LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool1LUTIn4",
+							Source = "Value",
+						},
+						Intermediate1 = Input { Value = "a1*a2", },
+						RedExpression = Input { Value = "r1*I1", },
+						GreenExpression = Input { Value = "g1*I1", },
+						BlueExpression = Input { Value = "b1*I1", },
+						AlphaExpression = Input { Value = "I1", },
+						Image1 = Input {
+							SourceOp = "KeyFlare",
+							Source = "Output",
+						},
+						Image2 = Input {
+							SourceOp = "PipeRouter7",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 1039.5 } },
+				},
+				CustomTool1LUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				CustomTool1LUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				CustomTool1LUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				CustomTool1LUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				FlareAmount = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 1, },
+						Gain = Input { Value = 0.335, },
+						Input = Input {
+							SourceOp = "Multiply1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 1897.5 } },
+					UserControls = ordered() {
+						LightFlare = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "LightFlare",
+						}
+					}
+				},
+				Premult3 = AlphaMultiply {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "ChannelBooleans3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -1980, 2788.5 } },
+				},
+				Merge1_2 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "BlurFlare_16_16",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge1_1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 1567.5 } },
+				},
+				PipeRouter10_1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "FlareAmount",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1045, 2425.5 } },
+				},
+				PipeRouter17 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter16",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 935, 2656.5 } },
+				},
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1045, 181.5 } },
+				},
+				BlurFlare_16_16 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 16,
+							Expression = "BlurFlare_2_2.XBlurSize*8",
+						},
+						YBlurSize = Input {
+							Value = 16,
+							Expression = "BlurFlare_2_2.YBlurSize*8",
+						},
+						Input = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1265, 1270.5 } },
+				},
+				BlurFlare_8_8 = Blur {
+					NameSet = true,
+					Inputs = {
+						LockXY = Input { Value = 0, },
+						XBlurSize = Input {
+							Value = 8,
+							Expression = "BlurFlare_2_2.XBlurSize*4",
+						},
+						YBlurSize = Input {
+							Value = 8,
+							Expression = "BlurFlare_2_2.YBlurSize*4",
+						},
+						Input = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 1270.5 } },
+				},
+				PipeRouter15 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Premult3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -1964.42, 3061.29 } },
+				},
+				BrightnessContrast1 = BrightnessContrast {
+					Inputs = {
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0, },
+						Blue = Input { Value = 0, },
+						Alpha = Input { Value = 1, },
+						High = Input { Value = 0.9, },
+						Input = Input {
+							SourceOp = "ChannelBooleans4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1485, 3250.5 } },
+				},
+				ChannelBooleans4 = ChannelBoolean {
+					Inputs = {
+						Operation = Input { Value = 5, },
+						Background = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1485, 3151.5 } },
+				},
+				Blur1 = Blur {
+					Inputs = {
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0, },
+						Blue = Input { Value = 0, },
+						XBlurSize = Input { Value = 3, },
+						Input = Input {
+							SourceOp = "PipeRouter15",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1485, 3052.5 } },
+				},
+				EdgeBlur = Blur {
+					NameSet = true,
+					Inputs = {
+						XBlurSize = Input { Value = 2, },
+						YBlurSize = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "Merge3",
+							Source = "Output",
+						},
+						EffectMask = Input {
+							SourceOp = "BrightnessContrast1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 3250.5 } },
+					UserControls = ordered() {
+						EdgeBlur = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "EdgeBlur",
+						}
+					}
+				},
+				Merge3 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "PipeRouter16",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Premult3",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 2788.5 } },
+				},
+				RegularOver = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "RegularOver",
+						},
+						Background = Input {
+							SourceOp = "EdgeBlur",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 3448.5 } },
+					UserControls = ordered() {
+						RegularOver = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "RegularOver",
+						}
+					}
+				},
+				Dissolve2 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "Dissolve1.ApplyLog",
+						},
+						Background = Input {
+							SourceOp = "Bg",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter14",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, -49.5 } },
+				},
+				Merge4 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "PipeRouter17",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter18",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 935, 3448.5 } },
+				},
+				Bg = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 1760, -544.5 } },
+				},
+				PipeRouter16 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1760, 2656.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Dissolve2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1760, 181.5 } },
+				},
+				PipeRouter18 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter19",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { -2585, 3448.5 } },
+				},
+				AlphaMultiply1_1_1 = AlphaMultiply {
+					Inputs = {
+						Input = Input {
+							SourceOp = "CineonLog1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1980, -478.5 } },
+				},
+				CineonLog1_1 = CineonLog {
+					Inputs = {
+						Depth = Input { Value = 1, },
+						SLogVersion = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "AlphaDivide2_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1980, -511.5 } },
+				},
+				AlphaDivide2_1 = AlphaDivide {
+					CtrlWZoom = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Bg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1980, -544.5 } },
+				},
+				OverAllMix = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "PipeRouter21",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "RegularOver",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 3712.5 } },
+				},
+				PipeRouter20 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter16",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1982.88, 2654.31 } },
+				},
+				PipeRouter14 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "AlphaMultiply1_1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1980, -49.5 } },
+				},
+				PipeRouter21 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter20",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1980, 3712.5 } },
+				},
+				PipeRouter22 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "OverAllMix",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1764.24, 3872.49 } },
+				},
+				PipeRouter23 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter22",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1925, 3877.5 } },
+				},
+				AlphaMultiply1_1_1_1 = AlphaMultiply {
+					Inputs = {
+						Input = Input {
+							SourceOp = "CineonLog1_1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 4075.5 } },
+				},
+				CineonLog1_1_1 = CineonLog {
+					Inputs = {
+						Depth = Input { Value = 1, },
+						Mode = Input { Value = 1, },
+						SLogVersion = Input { Value = FuID { "SLog2" }, },
+						Input = Input {
+							SourceOp = "AlphaDivide2_1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 4042.5 } },
+				},
+				AlphaDivide2_1_1 = AlphaDivide {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter23",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1925, 4009.5 } },
+				},
+				OverallMix_1 = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "Dissolve1.ApplyLog",
+						},
+						Background = Input {
+							SourceOp = "PipeRouter22",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter24",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 4207.5 } },
+				},
+				PipeRouter24 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "AlphaMultiply1_1_1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1925, 4207.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "L_Fuse"
+}

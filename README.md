@@ -27,6 +27,10 @@ Sharpen filter.
 **CH_FrequencySeparation:**
 Frequency separation filter.
 
+### LP
+**L_Fuse:**
+Luma Picture's merge node.
+
 ### LUT
 **LinearToHSL:**
 Converts an image from Linear to HSL colorspace.
