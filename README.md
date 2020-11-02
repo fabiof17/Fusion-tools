@@ -27,7 +27,7 @@ Sharpen filter.
 **CH_FrequencySeparation:**
 Frequency separation filter.
 
-### LP
+### LP (Luma Pictures)
 **L_Fuse:**
 Fuse is a replacement for the merge(over) node. Functions for light wrap and hue wrap onto the foreground.
 
