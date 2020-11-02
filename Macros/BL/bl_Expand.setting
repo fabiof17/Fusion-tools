@@ -10,7 +10,7 @@
 				Input1 = InstanceInput {
 					SourceOp = "highval",
 					Source = "HighValue",
-					Name = "High Value",
+					Name = "High Color",
 					Default = 0,
 				},
 				Input2 = InstanceInput {
@@ -121,24 +121,24 @@
 							LINKS_Name = "HighValue",
 						},
 						Red = {
-							CLRC_ColorSpace = "HSV",
+							LINKS_Name = "Red",
 							INP_Integer = false,
 							CLRC_ShowWheel = false,
 							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
 							IC_ControlID = 0,
 							IC_ControlGroup = 2,
-							INPID_InputControl = "ColorControl",
-							LINKS_Name = "Red",
 						},
 						Green = {
-							CLRC_ColorSpace = "HSV",
+							LINKS_Name = "Green",
 							INP_Integer = false,
 							CLRC_ShowWheel = false,
 							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
 							IC_ControlID = 1,
 							IC_ControlGroup = 3,
-							INPID_InputControl = "ColorControl",
-							LINKS_Name = "Green",
 						},
 						Blue = {
 							INP_Integer = false,
@@ -190,7 +190,6 @@
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
 				},
 				FillZero = ChannelBoolean {
-					CtrlWZoom = false,
 					NameSet = true,
 					Inputs = {
 						ToRed = Input { Value = 15, },
@@ -212,21 +211,6 @@
 					},
 					ViewInfo = PipeRouterInfo { Pos = { 770, 346.5 } },
 				},
-				minus1 = ChannelBoolean {
-					NameSet = true,
-					Inputs = {
-						Operation = Input { Value = 2, },
-						Background = Input {
-							SourceOp = "PipeRouter2",
-							Source = "Output",
-						},
-						Foreground = Input {
-							SourceOp = "lowval",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 385, 742.5 } },
-				},
 				minus2 = ChannelBoolean {
 					NameSet = true,
 					Inputs = {
@@ -241,6 +225,21 @@
 						},
 					},
 					ViewInfo = OperatorInfo { Pos = { 770, 742.5 } },
+				},
+				minus1 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "lowval",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, 742.5 } },
 				},
 				lowval = Custom {
 					NameSet = true,
@@ -299,34 +298,34 @@
 							LINKS_Name = "Low Color",
 						},
 						Red = {
-							CLRC_ColorSpace = "HSV",
+							LINKS_Name = "Red",
 							INP_Integer = false,
 							CLRC_ShowWheel = false,
 							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
 							IC_ControlID = 0,
 							IC_ControlGroup = 2,
-							INPID_InputControl = "ColorControl",
-							LINKS_Name = "Red",
 						},
 						Green = {
-							CLRC_ColorSpace = "HSV",
+							LINKS_Name = "Green",
 							INP_Integer = false,
 							CLRC_ShowWheel = false,
 							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
 							IC_ControlID = 1,
 							IC_ControlGroup = 3,
-							INPID_InputControl = "ColorControl",
-							LINKS_Name = "Green",
 						},
 						Blue = {
-							CLRC_ColorSpace = "HSV",
+							LINKS_Name = "Blue",
 							INP_Integer = false,
 							CLRC_ShowWheel = false,
 							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
 							IC_ControlID = 2,
 							IC_ControlGroup = 4,
-							INPID_InputControl = "ColorControl",
-							LINKS_Name = "Blue",
 						}
 					}
 				},
@@ -365,19 +364,6 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
-				},
-				FillOne = ChannelBoolean {
-					NameSet = true,
-					Inputs = {
-						ToRed = Input { Value = 16, },
-						ToGreen = Input { Value = 16, },
-						ToBlue = Input { Value = 16, },
-						Background = Input {
-							SourceOp = "FillZero",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 1155, 643.5 } },
 				},
 				CustomTool1 = Custom {
 					Inputs = {
@@ -447,16 +433,30 @@
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
 				},
+				FillOne = ChannelBoolean {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 16, },
+						ToGreen = Input { Value = 16, },
+						ToBlue = Input { Value = 16, },
+						Background = Input {
+							SourceOp = "FillZero",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 643.5 } },
+				},
 				divide = ChannelBoolean {
 					NameSet = true,
 					Inputs = {
 						Operation = Input { Value = 7, },
 						Background = Input {
-							SourceOp = "minus2",
+							SourceOp = "FillOne",
 							Source = "Output",
 						},
 						Foreground = Input {
-							SourceOp = "FillOne",
+							SourceOp = "minus2",
 							Source = "Output",
 						},
 					},
