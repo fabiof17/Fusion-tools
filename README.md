@@ -14,6 +14,9 @@ A common color correction function that pushes the low color to a value and the 
 **bl_Expand:**
 Does the exact reverse of the Compress node. It stretches the color between to low and high color values.
 
+**bl_Monochrome:**
+Same as the Shake's Monochrome node. You can play independently with the 3 color components.
+
 **bl_Solarize:**
 Solarize effect.
 
