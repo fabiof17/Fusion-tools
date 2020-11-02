@@ -20,6 +20,13 @@ Same as the Shake's Monochrome node. You can play independently with the 3 color
 **bl_Solarize:**
 Solarize effect.
 
+### FILTER
+**Sharpen_C:**
+Sharpen filter.
+
+**CH_FrequencySeparation:**
+Frequency separation filter.
+
 ### LUT
 **LinearToHSL:**
 Converts an image from Linear to HSL colorspace.
