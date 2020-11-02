@@ -29,7 +29,7 @@ Frequency separation filter.
 
 ### LP
 **L_Fuse:**
-Luma Picture's merge node.
+Fuse is a replacement for the merge(over) node. Functions for light wrap and hue wrap onto the foreground.
 
 ### LUT
 **LinearToHSL:**
