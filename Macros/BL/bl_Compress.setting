@@ -10,7 +10,7 @@
 				Input1 = InstanceInput {
 					SourceOp = "highval",
 					Source = "HighValue",
-					Name = "High Value",
+					Name = "High Color",
 					Default = 0,
 				},
 				Input2 = InstanceInput {
@@ -63,7 +63,6 @@
 					ViewInfo = PipeRouterInfo { Pos = { 385, 346.5 } },
 				},
 				highval = Custom {
-					CtrlWZoom = false,
 					NameSet = true,
 					Inputs = {
 						LUTIn1 = Input {
@@ -101,7 +100,7 @@
 						GreenExpression = Input { Value = "I2+S2", },
 						BlueExpression = Input { Value = "I3+S3", },
 						Image1 = Input {
-							SourceOp = "multiply1",
+							SourceOp = "FillZero",
 							Source = "Output",
 						},
 						Red = Input { Value = 1, },
@@ -110,47 +109,47 @@
 					ViewInfo = OperatorInfo { Pos = { 660, 643.5 } },
 					UserControls = ordered() {
 						HighValue = {
-							LINKS_Name = "HighValue",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "LabelControl",
-							INP_Integer = false,
-							INP_MinScale = 0,
-							INP_MaxScale = 1,
-							INP_MinAllowed = -1000000,
 							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
 							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
 							INP_External = false,
+							LINKS_Name = "HighValue",
 						},
 						Red = {
 							LINKS_Name = "Red",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "ColorControl",
 							INP_Integer = false,
-							IC_ControlGroup = 2,
-							IC_ControlID = 0,
-							CLRC_ColorSpace = "HSV",
 							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 0,
+							IC_ControlGroup = 2,
 						},
 						Green = {
 							LINKS_Name = "Green",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "ColorControl",
 							INP_Integer = false,
-							IC_ControlGroup = 3,
-							IC_ControlID = 1,
-							CLRC_ColorSpace = "HSV",
 							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 1,
+							IC_ControlGroup = 3,
 						},
 						Blue = {
-							LINKS_Name = "Blue",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "ColorControl",
-							INP_Default = 1,
 							INP_Integer = false,
-							IC_ControlGroup = 4,
-							IC_ControlID = 2,
+							INPID_InputControl = "ColorControl",
 							CLRC_ColorSpace = "HSV",
+							INP_Default = 1,
 							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							IC_ControlID = 2,
+							IC_ControlGroup = 4,
+							LINKS_Name = "Blue",
 						}
 					}
 				},
@@ -190,20 +189,18 @@
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
 				},
-				multiply2 = ChannelBoolean {
+				FillZero = ChannelBoolean {
 					NameSet = true,
 					Inputs = {
-						Operation = Input { Value = 6, },
+						ToRed = Input { Value = 15, },
+						ToGreen = Input { Value = 15, },
+						ToBlue = Input { Value = 15, },
 						Background = Input {
-							SourceOp = "PipeRouter2",
-							Source = "Output",
-						},
-						Foreground = Input {
-							SourceOp = "PipeRouter3",
+							SourceOp = "PipeRouter1",
 							Source = "Output",
 						},
 					},
-					ViewInfo = OperatorInfo { Pos = { 440, 907.5 } },
+					ViewInfo = OperatorInfo { Pos = { 770, 511.5 } },
 				},
 				minus = ChannelBoolean {
 					NameSet = true,
@@ -220,28 +217,6 @@
 					},
 					ViewInfo = OperatorInfo { Pos = { 770, 742.5 } },
 				},
-				multiply1 = ChannelBoolean {
-					NameSet = true,
-					Inputs = {
-						ToRed = Input { Value = 15, },
-						ToGreen = Input { Value = 15, },
-						ToBlue = Input { Value = 15, },
-						Background = Input {
-							SourceOp = "PipeRouter1",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 770, 511.5 } },
-				},
-				PipeRouter3 = PipeRouter {
-					Inputs = {
-						Input = Input {
-							SourceOp = "minus",
-							Source = "Output",
-						},
-					},
-					ViewInfo = PipeRouterInfo { Pos = { 770, 907.5 } },
-				},
 				PipeRouter1 = PipeRouter {
 					Inputs = {
 						Input = Input {
@@ -251,38 +226,24 @@
 					},
 					ViewInfo = PipeRouterInfo { Pos = { 770, 346.5 } },
 				},
-				plus = ChannelBoolean {
-					NameSet = true,
-					Inputs = {
-						Operation = Input { Value = 1, },
-						Background = Input {
-							SourceOp = "PipeRouter5",
-							Source = "Output",
-						},
-						Foreground = Input {
-							SourceOp = "multiply2",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 440, 1006.5 } },
-				},
 				lowval = Custom {
+					CtrlWZoom = false,
 					NameSet = true,
 					Inputs = {
 						LUTIn1 = Input {
-							SourceOp = "highval_1_1_1LUTIn1",
+							SourceOp = "lowvalLUTIn1",
 							Source = "Value",
 						},
 						LUTIn2 = Input {
-							SourceOp = "highval_1_1_1LUTIn2",
+							SourceOp = "lowvalLUTIn2",
 							Source = "Value",
 						},
 						LUTIn3 = Input {
-							SourceOp = "highval_1_1_1LUTIn3",
+							SourceOp = "lowvalLUTIn3",
 							Source = "Value",
 						},
 						LUTIn4 = Input {
-							SourceOp = "highval_1_1_1LUTIn4",
+							SourceOp = "lowvalLUTIn4",
 							Source = "Value",
 						},
 						Setup1 = Input {
@@ -304,57 +265,57 @@
 						GreenExpression = Input { Value = "I2+S2", },
 						BlueExpression = Input { Value = "I3+S3", },
 						Image1 = Input {
-							SourceOp = "multiply1",
+							SourceOp = "FillZero",
 							Source = "Output",
 						},
 					},
 					ViewInfo = OperatorInfo { Pos = { 880, 643.5 } },
 					UserControls = ordered() {
 						LowColor = {
-							LINKS_Name = "Low Color",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "LabelControl",
-							INP_Integer = false,
-							INP_MinScale = 0,
-							INP_MaxScale = 1,
-							INP_MinAllowed = -1000000,
 							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
 							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
 							INP_External = false,
+							LINKS_Name = "Low Color",
 						},
 						Red = {
 							LINKS_Name = "Red",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "ColorControl",
 							INP_Integer = false,
-							IC_ControlGroup = 2,
-							IC_ControlID = 0,
-							CLRC_ColorSpace = "HSV",
 							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 0,
+							IC_ControlGroup = 2,
 						},
 						Green = {
 							LINKS_Name = "Green",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "ColorControl",
 							INP_Integer = false,
-							IC_ControlGroup = 3,
-							IC_ControlID = 1,
-							CLRC_ColorSpace = "HSV",
 							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 1,
+							IC_ControlGroup = 3,
 						},
 						Blue = {
 							LINKS_Name = "Blue",
-							LINKID_DataType = "Number",
-							INPID_InputControl = "ColorControl",
 							INP_Integer = false,
-							IC_ControlGroup = 4,
-							IC_ControlID = 2,
-							CLRC_ColorSpace = "HSV",
 							CLRC_ShowWheel = false,
+							LINKID_DataType = "Number",
+							CLRC_ColorSpace = "HSV",
+							INPID_InputControl = "ColorControl",
+							IC_ControlID = 2,
+							IC_ControlGroup = 4,
 						}
 					}
 				},
-				highval_1_1_1LUTIn1 = LUTBezier {
+				lowvalLUTIn1 = LUTBezier {
 					KeyColorSplines = {
 						[0] = {
 							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
@@ -363,7 +324,7 @@
 					},
 					SplineColor = { Red = 204, Green = 0, Blue = 0 },
 				},
-				highval_1_1_1LUTIn2 = LUTBezier {
+				lowvalLUTIn2 = LUTBezier {
 					KeyColorSplines = {
 						[0] = {
 							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
@@ -372,7 +333,7 @@
 					},
 					SplineColor = { Red = 0, Green = 204, Blue = 0 },
 				},
-				highval_1_1_1LUTIn3 = LUTBezier {
+				lowvalLUTIn3 = LUTBezier {
 					KeyColorSplines = {
 						[0] = {
 							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
@@ -381,7 +342,7 @@
 					},
 					SplineColor = { Red = 0, Green = 0, Blue = 204 },
 				},
-				highval_1_1_1LUTIn4 = LUTBezier {
+				lowvalLUTIn4 = LUTBezier {
 					KeyColorSplines = {
 						[0] = {
 							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
@@ -389,6 +350,45 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				multiply = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, 907.5 } },
+				},
+				PipeRouter3 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "minus",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 770, 907.5 } },
+				},
+				plus = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "PipeRouter5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "multiply",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, 1006.5 } },
 				},
 				PipeRouter5 = PipeRouter {
 					Inputs = {
