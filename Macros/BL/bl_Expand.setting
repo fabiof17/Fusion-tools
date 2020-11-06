@@ -1,6 +1,6 @@
 {
 	Tools = ordered() {
-		MacroTool1 = MacroOperator {
+		bl_Expand = MacroOperator {
 			Inputs = ordered() {
 				MainInput1 = InstanceInput {
 					SourceOp = "Img",
@@ -14,19 +14,19 @@
 				Input2 = InstanceInput {
 					SourceOp = "lowval",
 					Source = "Red",
-					ControlGroup = 7,
+					ControlGroup = 6,
 				},
 				Input3 = InstanceInput {
 					SourceOp = "lowval",
 					Source = "Green",
-					ControlGroup = 8,
+					ControlGroup = 7,
 				},
 				Input4 = InstanceInput {
 					SourceOp = "lowval",
 					Source = "Blue",
-					ControlGroup = 9,
+					ControlGroup = 8,
 				},
-				Input5 = InstanceInput {
+				Input45 = InstanceInput {
 					SourceOp = "highval",
 					Source = "HighValue",
 					Name = "High Value",
@@ -35,19 +35,19 @@
 				Input6 = InstanceInput {
 					SourceOp = "highval",
 					Source = "Red",
-					ControlGroup = 3,
+					ControlGroup = 2,
 					Default = 1,
 				},
 				Input7 = InstanceInput {
 					SourceOp = "highval",
 					Source = "Green",
-					ControlGroup = 4,
+					ControlGroup = 3,
 					Default = 1,
 				},
 				Input8 = InstanceInput {
 					SourceOp = "highval",
 					Source = "Blue",
-					ControlGroup = 5,
+					ControlGroup = 4,
 					Default = 1,
 				},
 			},
@@ -59,32 +59,118 @@
 			},
 			ViewInfo = GroupInfo { Pos = { 0, 0 } },
 			Tools = ordered() {
-				Img = PipeRouter {
-					NameSet = true,
-					ViewInfo = PipeRouterInfo { Pos = { 385, 346.5 } },
-				},
-				FillZero = ChannelBoolean {
-					CtrlWZoom = false,
-					NameSet = true,
+				CustomTool1 = Custom {
 					Inputs = {
-						ToRed = Input { Value = 15, },
-						ToGreen = Input { Value = 15, },
-						ToBlue = Input { Value = 15, },
-						Background = Input {
-							SourceOp = "PipeRouter1",
+						LUTIn1 = Input {
+							SourceOp = "CustomTool1LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool1LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool1LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool1LUTIn4",
+							Source = "Value",
+						},
+						RedExpression = Input { Value = "r1*r2", },
+						GreenExpression = Input { Value = "g1*g2", },
+						BlueExpression = Input { Value = "b1*b2", },
+						Image1 = Input {
+							SourceOp = "minus1",
+							Source = "Output",
+						},
+						Image2 = Input {
+							SourceOp = "divide",
 							Source = "Output",
 						},
 					},
-					ViewInfo = OperatorInfo { Pos = { 770, 511.5 } },
+					ViewInfo = OperatorInfo { Pos = { 385, 907.5 } },
 				},
-				PipeRouter1 = PipeRouter {
+				CustomTool1LUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				CustomTool1LUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				CustomTool1LUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				CustomTool1LUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				divide = ChannelBoolean {
+					NameSet = true,
 					Inputs = {
-						Input = Input {
+						Operation = Input { Value = 7, },
+						Background = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "minus2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 770, 907.5 } },
+				},
+				minus2 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "highval",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "lowval",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 770, 742.5 } },
+				},
+				minus1 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						Background = Input {
 							SourceOp = "Img",
 							Source = "Output",
 						},
+						Foreground = Input {
+							SourceOp = "lowval",
+							Source = "Output",
+						},
 					},
-					ViewInfo = PipeRouterInfo { Pos = { 770, 346.5 } },
+					ViewInfo = OperatorInfo { Pos = { 385, 742.5 } },
 				},
 				highval = Custom {
 					NameSet = true,
@@ -210,7 +296,21 @@
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
 				},
+				FillOne = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 16, },
+						ToGreen = Input { Value = 16, },
+						ToBlue = Input { Value = 16, },
+						Background = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 709.5 } },
+				},
 				lowval = Custom {
+					CtrlWZoom = false,
 					NameSet = true,
 					Inputs = {
 						LUTIn1 = Input {
@@ -331,48 +431,27 @@
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
 				},
-				minus2 = ChannelBoolean {
-					NameSet = true,
+				PipeRouter3 = PipeRouter {
 					Inputs = {
-						Operation = Input { Value = 2, },
-						Background = Input {
-							SourceOp = "highval",
-							Source = "Output",
-						},
-						Foreground = Input {
-							SourceOp = "lowval",
+						Input = Input {
+							SourceOp = "FillOne",
 							Source = "Output",
 						},
 					},
-					ViewInfo = OperatorInfo { Pos = { 770, 742.5 } },
+					ViewInfo = PipeRouterInfo { Pos = { 1155, 907.5 } },
 				},
-				minus1 = ChannelBoolean {
+				FillZero = ChannelBoolean {
 					NameSet = true,
 					Inputs = {
-						Operation = Input { Value = 2, },
+						ToRed = Input { Value = 15, },
+						ToGreen = Input { Value = 15, },
+						ToBlue = Input { Value = 15, },
 						Background = Input {
-							SourceOp = "Img",
-							Source = "Output",
-						},
-						Foreground = Input {
-							SourceOp = "lowval",
+							SourceOp = "PipeRouter1",
 							Source = "Output",
 						},
 					},
-					ViewInfo = OperatorInfo { Pos = { 385, 742.5 } },
-				},
-				FillOne = ChannelBoolean {
-					NameSet = true,
-					Inputs = {
-						ToRed = Input { Value = 16, },
-						ToGreen = Input { Value = 16, },
-						ToBlue = Input { Value = 16, },
-						Background = Input {
-							SourceOp = "PipeRouter2",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 1155, 709.5 } },
+					ViewInfo = OperatorInfo { Pos = { 770, 511.5 } },
 				},
 				PipeRouter2 = PipeRouter {
 					Inputs = {
@@ -383,100 +462,21 @@
 					},
 					ViewInfo = PipeRouterInfo { Pos = { 1155, 511.5 } },
 				},
-				divide = ChannelBoolean {
-					NameSet = true,
-					Inputs = {
-						Operation = Input { Value = 7, },
-						Background = Input {
-							SourceOp = "PipeRouter3",
-							Source = "Output",
-						},
-						Foreground = Input {
-							SourceOp = "minus2",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 770, 907.5 } },
-				},
-				CustomTool1 = Custom {
-					Inputs = {
-						LUTIn1 = Input {
-							SourceOp = "CustomTool1LUTIn1",
-							Source = "Value",
-						},
-						LUTIn2 = Input {
-							SourceOp = "CustomTool1LUTIn2",
-							Source = "Value",
-						},
-						LUTIn3 = Input {
-							SourceOp = "CustomTool1LUTIn3",
-							Source = "Value",
-						},
-						LUTIn4 = Input {
-							SourceOp = "CustomTool1LUTIn4",
-							Source = "Value",
-						},
-						RedExpression = Input { Value = "r1*r2", },
-						GreenExpression = Input { Value = "g1*g2", },
-						BlueExpression = Input { Value = "b1*b2", },
-						Image1 = Input {
-							SourceOp = "minus1",
-							Source = "Output",
-						},
-						Image2 = Input {
-							SourceOp = "divide",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 385, 907.5 } },
-				},
-				CustomTool1LUTIn1 = LUTBezier {
-					KeyColorSplines = {
-						[0] = {
-							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
-							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
-						}
-					},
-					SplineColor = { Red = 204, Green = 0, Blue = 0 },
-				},
-				CustomTool1LUTIn2 = LUTBezier {
-					KeyColorSplines = {
-						[0] = {
-							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
-							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
-						}
-					},
-					SplineColor = { Red = 0, Green = 204, Blue = 0 },
-				},
-				CustomTool1LUTIn3 = LUTBezier {
-					KeyColorSplines = {
-						[0] = {
-							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
-							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
-						}
-					},
-					SplineColor = { Red = 0, Green = 0, Blue = 204 },
-				},
-				CustomTool1LUTIn4 = LUTBezier {
-					KeyColorSplines = {
-						[0] = {
-							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
-							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
-						}
-					},
-					SplineColor = { Red = 204, Green = 204, Blue = 204 },
-				},
-				PipeRouter3 = PipeRouter {
+				PipeRouter1 = PipeRouter {
 					Inputs = {
 						Input = Input {
-							SourceOp = "FillOne",
+							SourceOp = "Img",
 							Source = "Output",
 						},
 					},
-					ViewInfo = PipeRouterInfo { Pos = { 1155, 907.5 } },
+					ViewInfo = PipeRouterInfo { Pos = { 770, 346.5 } },
+				},
+				Img = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 385, 346.5 } },
 				}
 			},
 		}
 	},
-	ActiveTool = "MacroTool1"
+	ActiveTool = "bl_Expand"
 }
