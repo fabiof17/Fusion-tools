@@ -1,0 +1,308 @@
+{
+	Tools = ordered() {
+		bl_ChromaticAberation = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "TransformRed",
+					Source = "RedScale",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "TransformRed",
+					Source = "XSize",
+					Name = "Red X Scale",
+					Default = 1,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "TransformRed",
+					Source = "YSize",
+					Name = "Red Y Scale",
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "TransformGreen",
+					Source = "GreenScale",
+				},
+				Input5 = InstanceInput {
+					SourceOp = "TransformGreen",
+					Source = "XSize",
+					Name = "Green X Scale",
+					Default = 1,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "TransformGreen",
+					Source = "YSize",
+					Name = "Green Y Scale",
+					Default = 1,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "TransformBlue",
+					Source = "BlueScale",
+				},
+				Input8 = InstanceInput {
+					SourceOp = "TransformBlue",
+					Source = "XSize",
+					Name = "Blue X Scale",
+					Default = 1,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "TransformBlue",
+					Source = "YSize",
+					Name = "Blue Y Scale",
+					Default = 1,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "Img",
+					Source = "Input",
+					Name = "Img",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "RGBA",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 0, 1072.5 } },
+				},
+				RGB = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 5, },
+						ToGreen = Input { Value = 6, },
+						ToAlpha = Input { Value = 8, },
+						Background = Input {
+							SourceOp = "RG",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 973.5 } },
+				},
+				RGBA = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 5, },
+						ToGreen = Input { Value = 6, },
+						ToBlue = Input { Value = 7, },
+						Background = Input {
+							SourceOp = "RGB",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 1072.5 } },
+				},
+				RG = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 5, },
+						ToBlue = Input { Value = 7, },
+						ToAlpha = Input { Value = 8, },
+						Background = Input {
+							SourceOp = "TransformRed",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 874.5 } },
+				},
+				PipeRouter4 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "TransformGreen",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 385, 874.5 } },
+				},
+				PipeRouter3 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "TransformBlue",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 550, 973.5 } },
+				},
+				TransformBlue = Transform {
+					NameSet = true,
+					Inputs = {
+						Pivot = Input {
+							Value = { 960, 0.5 },
+							Expression = "Point((Transform1.Output.OriginalWidth/2)/(Transform1.Output.OriginalWidth), (Transform1.Output.OriginalHeight/2)/(Transform1.Output.OriginalHeight))",
+						},
+						UseSizeAndAspect = Input { Value = 0, },
+						ReferenceSize = Input { Value = 1, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1_2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 544.5 } },
+					UserControls = ordered() {
+						BlueScale = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "Blue Scale",
+						}
+					}
+				},
+				TransformGreen = Transform {
+					NameSet = true,
+					Inputs = {
+						Pivot = Input {
+							Value = { 960, 0.5 },
+							Expression = "Point((Transform1.Output.OriginalWidth/2)/(Transform1.Output.OriginalWidth), (Transform1.Output.OriginalHeight/2)/(Transform1.Output.OriginalHeight))",
+						},
+						UseSizeAndAspect = Input { Value = 0, },
+						ReferenceSize = Input { Value = 1, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, 544.5 } },
+					UserControls = ordered() {
+						GreenScale = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "Green Scale",
+						}
+					}
+				},
+				TransformRed = Transform {
+					NameSet = true,
+					Inputs = {
+						Pivot = Input { Expression = "Point((Transform1.Output.OriginalWidth/2)/(Transform1.Output.OriginalWidth), (Transform1.Output.OriginalHeight/2)/(Transform1.Output.OriginalHeight))", },
+						UseSizeAndAspect = Input { Value = 0, },
+						ReferenceSize = Input { Value = 1, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 544.5 } },
+					UserControls = ordered() {
+						RedScale = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "Red Scale",
+						}
+					}
+				},
+				ChannelBooleans1_2 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 7, },
+						ToGreen = Input { Value = 7, },
+						ToBlue = Input { Value = 7, },
+						ToAlpha = Input { Value = 7, },
+						Background = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 478.5 } },
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 5, },
+						ToGreen = Input { Value = 5, },
+						ToBlue = Input { Value = 5, },
+						ToAlpha = Input { Value = 8, },
+						Background = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 478.5 } },
+				},
+				ChannelBooleans1_1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 6, },
+						ToGreen = Input { Value = 6, },
+						ToBlue = Input { Value = 6, },
+						ToAlpha = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, 478.5 } },
+				},
+				Transform1 = Transform {
+					PassThrough = true,
+					CtrlWZoom = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, 346.5 } },
+				},
+				Img = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 385, 214.5 } },
+				},
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 0, 214.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "bl_ChromaticAberation"
+}

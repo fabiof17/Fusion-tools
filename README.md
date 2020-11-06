@@ -8,6 +8,9 @@
 **bl_Bytes:**
 Converts the picture in another byte space. This is of course a simple simulation as Natron works only in 32 floating point color space.
 
+**bl_ChromaticAberation:**
+A simple chromatic aberation tool.
+
 **bl_Compress:**
 A common color correction function that pushes the low color to a value and the high color to one another. While tempting to made a color matching between 2 picture this Macro might be really usefull.
 
