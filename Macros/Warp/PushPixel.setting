@@ -1,0 +1,465 @@
+{
+	Tools = ordered() {
+		PushPixel = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "PushPull",
+					Source = "Mode",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Displace1",
+					Source = "DistrotSize",
+					Name = "Size",
+					Default = 5,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Trans_value",
+					Source = "PushSize",
+					Name = "Edge Size",
+					Default = 5,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Blur1",
+					Source = "XBlurSize",
+					Name = "Soft Select",
+					Default = 5,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "Input_Alpha",
+					Source = "Input",
+					Name = "Input_Alpha",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Input_RGB",
+					Source = "Input",
+					Name = "Input_RGB",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Displace1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Displace1 = Displace {
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Type = Input { Value = 1, },
+						XOffset = Input { Value = -0.5, },
+						XRefraction = Input {
+							Value = 0.01,
+							Expression = "DistrotSize*0.002",
+						},
+						YOffset = Input { Value = -0.5, },
+						YRefraction = Input {
+							Value = 0.01,
+							Expression = "DistrotSize*0.002",
+						},
+						Input = Input {
+							SourceOp = "CopyAlpha1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PushPull",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 2029.5 } },
+					UserControls = ordered() {
+						DistrotSize = {
+							INP_MaxAllowed = 100,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 100,
+							INP_Default = 5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "DistrotSize",
+						}
+					}
+				},
+				Blur1 = Blur {
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						XBlurSize = Input { Value = 5, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 1831.5 } },
+				},
+				invert = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 10, },
+						Background = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 1897.5 } },
+				},
+				PushPull = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "Mode",
+						},
+						Background = Input {
+							SourceOp = "invert",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 2029.5 } },
+					UserControls = ordered() {
+						Mode = {
+							{ CCS_AddString = "Push" },
+							{ CCS_AddString = "Pull" },
+							INP_Integer = false,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							CC_LabelPosition = "Horizontal",
+							INPID_InputControl = "ComboControl",
+							LINKS_Name = "Mode",
+						}
+					}
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 5, },
+						ToBlue = Input { Value = 15, },
+						ToAlpha = Input { Value = 16, },
+						Background = Input {
+							SourceOp = "Merge6",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 1765.5 } },
+				},
+				Brightness4 = Fuse.reactor.Brightness {
+					NameSet = true,
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Brightness = Input { Value = -0.5, },
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2035, 1600.5 } },
+				},
+				Merge3 = Merge {
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge2",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Brightness2",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 1600.5 } },
+				},
+				Brightness2 = Fuse.reactor.Brightness {
+					NameSet = true,
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Brightness = Input { Value = -0.5, },
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 1600.5 } },
+				},
+				Merge6 = Merge {
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Brightness4",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 1600.5 } },
+				},
+				Merge2 = Merge {
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Brightness1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 1468.5 } },
+				},
+				Merge5 = Merge {
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Merge4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Brightness3",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 1468.5 } },
+				},
+				Brightness3 = Fuse.reactor.Brightness {
+					NameSet = true,
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Brightness = Input { Value = -1, },
+						Input = Input {
+							SourceOp = "Transform4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2035, 1468.5 } },
+				},
+				Brightness1 = Fuse.reactor.Brightness {
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Brightness = Input { Value = -1, },
+						Input = Input {
+							SourceOp = "Transform2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 1468.5 } },
+				},
+				Transform2 = Transform {
+					NameSet = true,
+					Inputs = {
+						Center = Input { Expression = "Point(  0.5 , ((Trans_value.Output.OriginalHeight/2) -Trans_value.PushSize) /Trans_value.Output.OriginalHeight)", },
+						Edges = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 1435.5 } },
+				},
+				Transform4 = Transform {
+					NameSet = true,
+					Inputs = {
+						Center = Input { Expression = "Point(  ((Trans_value.Output.OriginalWidth/2) -Trans_value.PushSize) /Trans_value.Output.OriginalWidth , 0.5)", },
+						Edges = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2035, 1435.5 } },
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 1336.5 } },
+				},
+				Merge4 = Merge {
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Transform3",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1760, 1336.5 } },
+				},
+				Transform3 = Transform {
+					NameSet = true,
+					Inputs = {
+						Center = Input { Expression = "Point(  ((Trans_value.Output.OriginalWidth/2) +Trans_value.PushSize) /Trans_value.Output.OriginalWidth , 0.5)", },
+						Edges = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2035, 1336.5 } },
+				},
+				Transform1 = Transform {
+					Inputs = {
+						Center = Input { Expression = "Point(  0.5 , ((Trans_value.Output.OriginalHeight/2) +Trans_value.PushSize) /Trans_value.Output.OriginalHeight)", },
+						Edges = Input { Value = 2, },
+						Input = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 1336.5 } },
+				},
+				PipeRouter3 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Constant1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1155, 1171.5 } },
+				},
+				PipeRouter4 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 1171.5 } },
+				},
+				Trans_value = Transform {
+					NameSet = true,
+					Inputs = {
+						Center = Input { Value = { 0.502604166666667, 0.5 }, },
+						ReferenceSize = Input { Value = 1, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 1138.5 } },
+					UserControls = ordered() {
+						PushSize = {
+							INP_MaxAllowed = 100,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 100,
+							INP_Default = 5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "PushSize",
+						}
+					}
+				},
+				Constant1 = Background {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input {
+							Value = 1920,
+							Expression = "Input_RGB.Output.OriginalWidth",
+						},
+						Height = Input {
+							Value = 1080,
+							Expression = "Input_RGB.Output.OriginalHeight",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Value = 0.5, },
+						TopLeftGreen = Input { Value = 0.5, },
+						TopLeftBlue = Input { Value = 0.5, },
+						TopLeftAlpha = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 973.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Constant1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1375, 973.5 } },
+				},
+				CopyAlpha1 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Input_RGB",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 874.5 } },
+				},
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Alpha_to_RGB",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 874.5 } },
+				},
+				Alpha_to_RGB = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 8, },
+						ToGreen = Input { Value = 8, },
+						ToBlue = Input { Value = 8, },
+						ToAlpha = Input { Value = 8, },
+						Background = Input {
+							SourceOp = "Input_Alpha",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 742.5 } },
+				},
+				Input_Alpha = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 577.5 } },
+				},
+				Input_RGB = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 880, 577.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "PushPixel"
+}
