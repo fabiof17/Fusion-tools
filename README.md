@@ -23,6 +23,10 @@ Same as the Shake's Monochrome node. You can play independently with the 3 color
 **bl_Solarize:**
 Solarize effect.
 
+### COLOR
+**Firefly_Killer:**
+Removes fireflies, very bright, nervously jumping around pixels.
+
 ### FILTER
 **Sharpen_C:**
 Sharpen filter.

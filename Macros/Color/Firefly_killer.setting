@@ -1,0 +1,187 @@
+{
+	Tools = ordered() {
+		Firefly_Killer = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Img",
+					Source = "Input",
+					Name = "Img",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "Median",
+					Source = "Size",
+					Name = "Firefly Pixel Size",
+					Default = 1,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "ColorGain1",
+					Source = "ffgain",
+					Name = "Gain",
+					Default = 0.5,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "ColorGain1",
+					Source = "GammaRed",
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Merge1",
+					Source = "Diagnose",
+					Name = "Diagnose Fireflies",
+					Default = 0,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Img = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 715, 445.5 } },
+				},
+				CustomFilter1 = CustomFilter {
+					Inputs = {
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 577.5 } },
+				},
+				DifferenceKeyer1 = DifferenceKeyer {
+					Inputs = {
+						High = Input { Value = 1, },
+						PostMultiplyImage = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "CustomFilter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 577.5 } },
+				},
+				Median = RankFilter {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+						EffectMask = Input {
+							SourceOp = "ColorGain1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 709.5 } },
+				},
+				ColorGain1 = ColorGain {
+					Inputs = {
+						ProcessRed = Input { Value = 0, },
+						ProcessGreen = Input { Value = 0, },
+						ProcessBlue = Input { Value = 0, },
+						LockRGB = Input { Value = 1, },
+						GainAlpha = Input {
+							Value = 50,
+							Expression = "ffgain*100",
+						},
+						LiftNest = Input { Value = 0, },
+						GammaAlpha = Input { Value = 0.715, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.125, 0.75 },
+											{ 0.375, 0.25 },
+											{ 0.5, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0.5, 0 },
+											{ 0.625, 0.25 },
+											{ 0.875, 0.75 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						Input = Input {
+							SourceOp = "DifferenceKeyer1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 709.5 } },
+					UserControls = ordered() {
+						ffgain = {
+							INP_MaxAllowed = 1,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 1,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "ffgain",
+						}
+					}
+				},
+				Merge1 = Merge {
+					CtrlWZoom = false,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "Diagnose",
+						},
+						Background = Input {
+							SourceOp = "Median",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "ColorGain1",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Difference" }, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 841.5 } },
+					UserControls = ordered() {
+						Diagnose = {
+							LINKS_Name = "Diagnose",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "CheckboxControl",
+							INP_Integer = false,
+							CBC_TriState = false,
+						}
+					}
+				}
+			},
+		}
+	},
+	ActiveTool = "Firefly_Killer"
+}
