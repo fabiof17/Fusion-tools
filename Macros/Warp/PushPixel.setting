@@ -25,14 +25,14 @@
 					Default = 5,
 				},
 				MainInput1 = InstanceInput {
-					SourceOp = "Input_Alpha",
-					Source = "Input",
-					Name = "Input_Alpha",
-				},
-				MainInput2 = InstanceInput {
 					SourceOp = "Input_RGB",
 					Source = "Input",
 					Name = "Input_RGB",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Input_Alpha",
+					Source = "Input",
+					Name = "Input_Alpha",
 				},
 			},
 			Outputs = {
