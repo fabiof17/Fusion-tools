@@ -6,7 +6,7 @@
 
 ### BL
 **bl_Bytes:**
-Converts the picture in another byte space. This is of course a simple simulation as Natron works only in 32 floating point color space.
+Converts the picture in another byte space.
 
 **bl_ChromaticAberation:**
 A simple chromatic aberation tool.
