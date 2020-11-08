@@ -42,6 +42,10 @@ Fuse is a replacement for the merge(over) node. Functions for light wrap and hue
 **LinearToHSL:**
 Converts an image from Linear to HSL colorspace.
 
+### MERGE
+**AdditiveKeyer:**
+Another Additive Keyer with a few added tweaks. Much of the tool was taken from the great article by rafal kaniewski.
+
 ### PXF
 **PxF_Bandpass:**
 Extract detail from an image. Useful to make plates easier to track.

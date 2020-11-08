@@ -1,0 +1,1146 @@
+{
+	Tools = ordered() {
+		AdditiveKeyer = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "TopLeftRed",
+					Name = "Color",
+					ControlGroup = 1,
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "TopLeftGreen",
+					ControlGroup = 1,
+					Default = 0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "TopLeftBlue",
+					ControlGroup = 1,
+					Default = 0,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "TopLeftAlpha",
+					ControlGroup = 1,
+					Default = 1,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "TopRightRed",
+					Name = "Top Right",
+					ControlGroup = 2,
+					Default = 0,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "TopRightGreen",
+					ControlGroup = 2,
+					Default = 0,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "TopRightBlue",
+					ControlGroup = 2,
+					Default = 0,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "BottomLeftRed",
+					Name = "Bottom Left",
+					ControlGroup = 3,
+					Default = 0,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "BottomLeftGreen",
+					ControlGroup = 3,
+					Default = 0,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "BottomLeftBlue",
+					ControlGroup = 3,
+					Default = 0,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "BottomLeftAlpha",
+					ControlGroup = 3,
+					Default = 1,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "BottomRightRed",
+					Name = "Bottom Right",
+					ControlGroup = 4,
+					Default = 0,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "BottomRightGreen",
+					ControlGroup = 4,
+					Default = 0,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "UserColor",
+					Source = "BottomRightBlue",
+					ControlGroup = 4,
+					Default = 0,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "switchEnableColor",
+					Source = "EnableColor",
+					Name = "Enable Color",
+					Default = 0,
+				},
+				Input16 = InstanceInput {
+					SourceOp = "ImageFormat",
+					Source = "barre1",
+				},
+				Input17 = InstanceInput {
+					SourceOp = "gradeHi",
+					Source = "Gain",
+					Name = "High Pass",
+					Default = 5,
+				},
+				Input18 = InstanceInput {
+					SourceOp = "gradeLow",
+					Source = "Gain",
+					Name = "Low Pass",
+					Default = 4,
+				},
+				Input19 = InstanceInput {
+					SourceOp = "switchEbableLowpass",
+					Source = "EnableLowPass",
+					Name = "Enable LowPass",
+					Default = 1,
+				},
+				Input20 = InstanceInput {
+					SourceOp = "ImageFormat",
+					Source = "barre2",
+				},
+				Input21 = InstanceInput {
+					SourceOp = "bg_tweak",
+					Source = "AdjustBackground",
+					Name = "Adjust Background",
+					Default = 0,
+				},
+				Input22 = InstanceInput {
+					SourceOp = "bg_tweak",
+					Source = "MasterRGBContrast",
+					Name = "Contrast",
+					Default = 1,
+				},
+				Input23 = InstanceInput {
+					SourceOp = "bg_tweak",
+					Source = "MasterRGBGain",
+					Name = "Gain",
+					Default = 1,
+				},
+				Input24 = InstanceInput {
+					SourceOp = "bg_tweak",
+					Source = "MasterRGBLift",
+					Name = "Lift",
+					Default = 0,
+				},
+				Input25 = InstanceInput {
+					SourceOp = "bg_tweak",
+					Source = "MasterRGBGamma",
+					Name = "Gamma",
+					Default = 1,
+				},
+				Input26 = InstanceInput {
+					SourceOp = "bg_tweak",
+					Source = "MasterRGBBrightness",
+					Name = "Brightness",
+					Default = 0,
+				},				
+				Input27 = InstanceInput {
+					SourceOp = "clampBlackWhite",
+					Source = "ClipBlack",
+					Name = "Black Clamp",
+					Default = 1,
+				},
+				Input28 = InstanceInput {
+					SourceOp = "clampBlackWhite",
+					Source = "ClipWhite",
+					Name = "White Clamp",
+					Default = 0,
+				},
+				Input29 = InstanceInput {
+					SourceOp = "bg_tweak",
+					Source = "Blend",
+					Name = "Mix",
+					Default = 1,
+				},
+				Input30 = InstanceInput {
+					SourceOp = "ImageFormat",
+					Source = "barre3",
+				},
+				Input31 = InstanceInput {
+					SourceOp = "OverallGain",
+					Source = "Gain",
+					Name = "Overall Gain",
+					Default = 1,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "Bg",
+					Source = "Input",
+					Name = "Bg",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Fg",
+					Source = "Input",
+					Name = "Fg",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Instance_clampBlackWhite",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				add = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "gradeHi",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "gradeLow",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 2062.5 } },
+				},
+				switchEbableLowpass = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input { Expression = "EnableLowPass", },
+						Background = Input {
+							SourceOp = "gradeHi",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "add",
+							Source = "Output",
+						},
+						EnableLowPass = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 935, 2062.5 } },
+					UserControls = ordered() {
+						EnableLowPass = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							INP_External = false,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "EnableLowPass",
+						}
+					}
+				},
+				Instance_clampBlackWhite = BrightnessContrast {
+					CtrlWZoom = false,
+					NameSet = true,
+					SourceOp = "clampBlackWhite",
+					Inputs = {
+						Input = Input {
+							SourceOp = "OverallGain",
+							Source = "Output",
+						},
+						StartEndRenderScripts = Input { },
+						EffectMask = Input { }
+					},
+					ViewInfo = OperatorInfo { Pos = { 1265, 2524.5 } },
+				},
+				OverallGain = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "BG_Compensation",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1265, 2458.5 } },
+				},
+				add_1 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "PipeRouter5",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "switchEbableLowpass",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1265, 2293.5 } },
+				},
+				gradeHi = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Gain = Input { Value = 5, },
+						Input = Input {
+							SourceOp = "multiply1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 1897.5 } },
+				},
+				BG_Compensation = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Gain = Input {
+							Value = 0.5,
+							Expression = "1-gradeHi.Gain/10",
+						},
+						Input = Input {
+							SourceOp = "add_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1265, 2392.5 } },
+				},
+				gradeLow = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Gain = Input { Value = 4, },
+						Input = Input {
+							SourceOp = "multiply2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 1897.5 } },
+				},
+				multiply1 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "Overall_Gain",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 1666.5 } },
+				},
+				multiply2 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 6, },
+						Background = Input {
+							SourceOp = "CustomTool1_1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 1666.5 } },
+				},
+				bg_tweak = ColorCorrector {
+					NameSet = true,
+					Inputs = {
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 1567.5 } },
+					UserControls = ordered() {
+						AdjustBackground = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "AdjustBackground",
+						}
+					}
+				},
+				clampBlackWhite = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						ClipBlack = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "bg_tweak",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 1567.5 } },
+				},
+				PipeRouter4 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "clampBlackWhite",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1100, 1567.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Bg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 1567.5 } },
+				},
+				PipeRouter5 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 1897.5 } },
+				},
+				clampHigh = MacroOperator {
+					NameSet = true,
+					Inputs = ordered() {
+						MainInput1 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "Image1",
+						},
+						Input2 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "NumberIn1",
+							Name = "Clamp High",
+							Default = 1,
+						},
+						Input3 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "NumberIn2",
+							Name = "Clamp Low",
+							Default = 0,
+						},
+						Input4 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "Blend",
+							Default = 1,
+						},
+						Input5 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "ProcessWhenBlendIs00",
+							Default = 0,
+						},
+						Input6 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "ProcessRed",
+							Name = "Red",
+							Default = 1,
+						},
+						Input7 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "ProcessGreen",
+							Name = "Green",
+							Default = 1,
+						},
+						Input8 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "ProcessBlue",
+							Name = "Blue",
+							Default = 1,
+						},
+						Input9 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "ProcessAlpha",
+							Name = "Alpha",
+							Default = 1,
+						},
+						Input10 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "ApplyMaskInverted",
+							Default = 0,
+						},
+						Input11 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "MultiplyByMask",
+							Default = 0,
+						},
+						Input12 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "FitMask",
+						},
+						Input13 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "MaskChannel",
+							Default = 3,
+						},
+						Input14 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "MaskHigh",
+							ControlGroup = 15,
+							Default = 1,
+						},
+						Input15 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "MaskLow",
+							ControlGroup = 15,
+							Default = 0,
+						},
+						Input16 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "MaskClipBlack",
+							Default = 1,
+						},
+						Input17 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "MaskClipWhite",
+							Default = 1,
+						},
+						Input18 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "UseObject",
+							Default = 0,
+						},
+						Input19 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "UseMaterial",
+							Default = 0,
+						},
+						Input20 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "CorrectEdges",
+						},
+						Input21 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "ObjectID",
+							Name = "Object / Material",
+							ControlGroup = 21,
+							Default = 0,
+						},
+						Input22 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "MaterialID",
+							Name = "Object / Material",
+							ControlGroup = 21,
+							Default = 0,
+						},
+						Input23 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "MotionBlur",
+							Default = 0,
+						},
+						Input24 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "Quality",
+							Default = 2,
+						},
+						Input25 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "ShutterAngle",
+							Default = 180,
+						},
+						Input26 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "CenterBias",
+							Default = 0,
+						},
+						Input27 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "SampleSpread",
+							Default = 1,
+						},
+						Input1 = InstanceInput {
+							SourceOp = "Overall_Gain",
+							Source = "EffectMask",
+						}
+					},
+					Outputs = {
+						MainOutput1 = InstanceOutput {
+							SourceOp = "Overall_Gain",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo { Pos = { 990, 1369.5 } },
+					Tools = ordered() {
+						Overall_Gain = Custom {
+							CtrlWZoom = false,
+							CtrlWShown = false,
+							NameSet = true,
+							Inputs = {
+								NumberIn1 = Input { Value = 1000, },
+								LUTIn1 = Input {
+									SourceOp = "OverallGainLUTIn1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "OverallGainLUTIn2",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "OverallGainLUTIn3",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "OverallGainLUTIn4",
+									Source = "Value",
+								},
+								RedExpression = Input { Value = "if(r1>n1,n1,if(r1<n2,n2,r1))", },
+								GreenExpression = Input { Value = "if(g1>n1,n1,if(g1<n2,n2,g1))", },
+								BlueExpression = Input { Value = "if(b1>n1,n1,if(b1<n2,n2,b1))", },
+								AlphaExpression = Input { Value = "if(a1>n1,n1,if(a1<n2,n2,a1))", },
+								Image1 = Input {
+									SourceOp = "Saturation2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 0, 10.15 } },
+						},
+						OverallGainLUTIn1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 0, Blue = 0 },
+							CtrlWShown = false,
+						},
+						OverallGainLUTIn2 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 204, Blue = 0 },
+							CtrlWShown = false,
+						},
+						OverallGainLUTIn3 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 0, Blue = 204 },
+							CtrlWShown = false,
+						},
+						OverallGainLUTIn4 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWShown = false,
+						}
+					},
+				},
+				clampLow = MacroOperator {
+					NameSet = true,
+					Inputs = ordered() {
+						MainInput1 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "Image1",
+						},
+						Input2 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "NumberIn1",
+							Name = "Clamp High",
+							Default = 1,
+						},
+						Input3 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "NumberIn2",
+							Name = "Clamp Low",
+							Default = 0,
+						},
+						Input4 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "Blend",
+							Default = 1,
+						},
+						Input5 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessWhenBlendIs00",
+							Default = 0,
+						},
+						Input6 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessRed",
+							Name = "Red",
+							Default = 1,
+						},
+						Input7 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessGreen",
+							Name = "Green",
+							Default = 1,
+						},
+						Input8 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessBlue",
+							Name = "Blue",
+							Default = 1,
+						},
+						Input9 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ProcessAlpha",
+							Name = "Alpha",
+							Default = 1,
+						},
+						Input10 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ApplyMaskInverted",
+							Default = 0,
+						},
+						Input11 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MultiplyByMask",
+							Default = 0,
+						},
+						Input12 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "FitMask",
+						},
+						Input13 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskChannel",
+							Default = 3,
+						},
+						Input14 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskHigh",
+							ControlGroup = 15,
+							Default = 1,
+						},
+						Input15 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskLow",
+							ControlGroup = 15,
+							Default = 0,
+						},
+						Input16 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskClipBlack",
+							Default = 1,
+						},
+						Input17 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaskClipWhite",
+							Default = 1,
+						},
+						Input18 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "UseObject",
+							Default = 0,
+						},
+						Input19 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "UseMaterial",
+							Default = 0,
+						},
+						Input20 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "CorrectEdges",
+						},
+						Input21 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ObjectID",
+							Name = "Object / Material",
+							ControlGroup = 21,
+							Default = 0,
+						},
+						Input22 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MaterialID",
+							Name = "Object / Material",
+							ControlGroup = 21,
+							Default = 0,
+						},
+						Input23 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "MotionBlur",
+							Default = 0,
+						},
+						Input24 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "Quality",
+							Default = 2,
+						},
+						Input25 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "ShutterAngle",
+							Default = 180,
+						},
+						Input26 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "CenterBias",
+							Default = 0,
+						},
+						Input27 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "SampleSpread",
+							Default = 1,
+						},
+						Input1 = InstanceInput {
+							SourceOp = "CustomTool1_1",
+							Source = "EffectMask",
+						}
+					},
+					Outputs = {
+						MainOutput1 = InstanceOutput {
+							SourceOp = "CustomTool1_1",
+							Source = "Output",
+						}
+					},
+					ViewInfo = GroupInfo { Pos = { 1210, 1369.5 } },
+					Tools = ordered() {
+						CustomTool1_1 = Custom {
+							CtrlWZoom = false,
+							CtrlWShown = false,
+							Inputs = {
+								NumberIn2 = Input { Value = -1000, },
+								LUTIn1 = Input {
+									SourceOp = "CustomTool1LUTIn1_1",
+									Source = "Value",
+								},
+								LUTIn2 = Input {
+									SourceOp = "CustomTool1LUTIn2_1",
+									Source = "Value",
+								},
+								LUTIn3 = Input {
+									SourceOp = "CustomTool1LUTIn3_1",
+									Source = "Value",
+								},
+								LUTIn4 = Input {
+									SourceOp = "CustomTool1LUTIn4_1",
+									Source = "Value",
+								},
+								RedExpression = Input { Value = "if(r1>n1,n1,if(r1<n2,n2,r1))", },
+								GreenExpression = Input { Value = "if(g1>n1,n1,if(g1<n2,n2,g1))", },
+								BlueExpression = Input { Value = "if(b1>n1,n1,if(b1<n2,n2,b1))", },
+								AlphaExpression = Input { Value = "if(a1>n1,n1,if(a1<n2,n2,a1))", },
+								Image1 = Input {
+									SourceOp = "Saturation2",
+									Source = "Output",
+								},
+							},
+							ViewInfo = OperatorInfo { Pos = { 0, 10.15 } },
+						},
+						CustomTool1LUTIn1_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 0, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CustomTool1LUTIn2_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 204, Blue = 0 },
+							CtrlWShown = false,
+						},
+						CustomTool1LUTIn3_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 0, Green = 0, Blue = 204 },
+							CtrlWShown = false,
+						},
+						CustomTool1LUTIn4_1 = LUTBezier {
+							KeyColorSplines = {
+								[0] = {
+									[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+									[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+								}
+							},
+							SplineColor = { Red = 204, Green = 204, Blue = 204 },
+							CtrlWShown = false,
+						}
+					},
+				},
+				Saturation2 = ColorCorrector {
+					NameSet = true,
+					Inputs = {
+						WheelSaturation1 = Input { Value = 0, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "subtract",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 1237.5 } },
+				},
+				switchEnableColor = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "EnableColor",
+						},
+						Background = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Resize1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 495, 1138.5 } },
+					UserControls = ordered() {
+						EnableColor = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "EnableColor",
+						}
+					}
+				},
+				subtract = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						Operation = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "switchEnableColor",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 1138.5 } },
+				},
+				Resize1_1 = BetterResize {
+					Inputs = {
+						Width = Input {
+							Value = 1994,
+							Expression = "ImageFormat.Output.OriginalWidth",
+						},
+						Height = Input {
+							Value = 1024,
+							Expression = "ImageFormat.Output.OriginalHeight",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "UserColor",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, 874.5 } },
+				},
+				Blur1 = Blur {
+					Inputs = {
+						XBlurSize = Input { Value = 100, },
+						Input = Input {
+							SourceOp = "Saturation1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 825, 907.5 } },
+				},
+				UserColor = Background {
+					NameSet = true,
+					Inputs = {
+						UseFrameFormatSettings = Input { Value = 1, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 440, 742.5 } },
+				},
+				Saturation1 = ColorCorrector {
+					NameSet = true,
+					Inputs = {
+						WheelSaturation1 = Input { Value = 0, },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.4, 0.2 },
+											{ 0.6, 0 },
+											{ 1, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0, 0 },
+											{ 0.4, 0 },
+											{ 0.6, 0.2 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						HistogramIgnoreTransparent = Input { Value = 1, },
+						Input = Input {
+							SourceOp = "ImageFormat",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 825, 841.5 } },
+				},
+				ImageFormat = Transform {
+					PassThrough = true,
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "Fg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 825, 709.5 } },
+					UserControls = ordered() {
+						barre1 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "---------------------------------------------------------------------------------------------------",
+						},
+						barre2 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "---------------------------------------------------------------------------------------------------",
+						},
+						barre3 = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							LBLC_DropDownButton = false,
+							INPID_InputControl = "LabelControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							LINKS_Name = "---------------------------------------------------------------------------------------------------",
+						}
+					}
+				},
+				Bg = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 412.5 } },
+				},
+				Fg = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 823.807, 413.708 } },
+				},
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Fg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1100, 412.5 } },
+				},
+				FG_1 = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { 825.796, 379.5 },
+						Size = { 209.989, 101.4 }
+					},
+				},
+				BG_1 = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { 1705, 379.5 },
+						Size = { 209.989, 101.4 }
+					},
+				}
+			},
+		}
+	},
+	ActiveTool = "test"
+}
