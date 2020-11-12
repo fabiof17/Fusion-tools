@@ -1139,7 +1139,7 @@
 					NameSet = true,
 					Inputs = {
 						Alpha = Input { Value = 1, },
-						Gain = Input { Value = 0.345, },
+						Gain = Input { Value = 0.1, },
 						Input = Input {
 							SourceOp = "Multiply2",
 							Source = "Output",
@@ -1600,7 +1600,7 @@
 					NameSet = true,
 					Inputs = {
 						Alpha = Input { Value = 1, },
-						Gain = Input { Value = 0.335, },
+						Gain = Input { Value = 0.30, },
 						Input = Input {
 							SourceOp = "Multiply1",
 							Source = "Output",
