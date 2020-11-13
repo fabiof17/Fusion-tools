@@ -27,7 +27,7 @@
 				MainInput1 = InstanceInput {
 					SourceOp = "PipeRouter4",
 					Source = "Input",
-					Name = "In",
+					Name = "Img",
 				},
 			},
 			Outputs = {

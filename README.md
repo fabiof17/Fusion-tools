@@ -11,8 +11,7 @@
 
 **[bl_Expand](/Macros/BL/Color/bl_Expand)** : Does the exact reverse of the Compress node. It stretches the color between to low and high color values.
 
-**bl_Monochrome:**
-Same as the Shake's Monochrome node. You can play independently with the 3 color components.
+**[bl_Monochrome](/Macros/BL/Color/bl_Monochrome)** : Same as the Shake's Monochrome node. You can play independently with the 3 color components.
 
 ### BL/Warp
 **[bl_ChromaticAberation](/Macros/BL/Warp/bl_ChromaticAberation)** : A simple chromatic aberation tool.
