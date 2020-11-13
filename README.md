@@ -7,9 +7,6 @@
 ### BL/Color
 **[bl_Bytes](/Macros/BL/Color/bl_Bytes)** : Converts the picture in another byte space. 
 
-### BL/Warp
-**[bl_ChromaticAberation](/Macros/BL/Warp/bl_ChromaticAberation)** : A simple chromatic aberation tool.
-
 **bl_Compress:**
 A common color correction function that pushes the low color to a value and the high color to one another. While tempting to made a color matching between 2 picture this Macro might be really usefull.
 
@@ -18,6 +15,9 @@ Does the exact reverse of the Compress node. It stretches the color between to l
 
 **bl_Monochrome:**
 Same as the Shake's Monochrome node. You can play independently with the 3 color components.
+
+### BL/Warp
+**[bl_ChromaticAberation](/Macros/BL/Warp/bl_ChromaticAberation)** : A simple chromatic aberation tool.
 
 **bl_Solarize:**
 Solarize effect.

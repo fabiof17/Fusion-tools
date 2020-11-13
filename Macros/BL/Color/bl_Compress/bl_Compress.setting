@@ -5,7 +5,7 @@
 				MainInput1 = InstanceInput {
 					SourceOp = "PipeRouter2",
 					Source = "Input",
-					Name = "In",
+					Name = "Img",
 				},
 				Input1 = InstanceInput {
 					SourceOp = "lowval",
@@ -13,17 +13,17 @@
 				},
 				Input2 = InstanceInput {
 					SourceOp = "lowval",
-					Source = "Red",
+					Source = "Red Low",
 					ControlGroup = 7,
 				},
 				Input3 = InstanceInput {
 					SourceOp = "lowval",
-					Source = "Green",
+					Source = "Green Low",
 					ControlGroup = 8,
 				},
 				Input4 = InstanceInput {
 					SourceOp = "lowval",
-					Source = "Blue",
+					Source = "Blue Low",
 					ControlGroup = 9,
 				},
 				Input5 = InstanceInput {
@@ -34,19 +34,19 @@
 				},
 				Input6 = InstanceInput {
 					SourceOp = "highval",
-					Source = "Red",
+					Source = "Red High",
 					ControlGroup = 3,
 					Default = 1,
 				},
 				Input7 = InstanceInput {
 					SourceOp = "highval",
-					Source = "Green",
+					Source = "Green High",
 					ControlGroup = 4,
 					Default = 1,
 				},
 				Input8 = InstanceInput {
 					SourceOp = "highval",
-					Source = "Blue",
+					Source = "Blue High",
 					ControlGroup = 5,
 					Default = 1,
 				},
