@@ -7,8 +7,7 @@
 ### BL/Color
 **[bl_Bytes](/Macros/BL/Color/bl_Bytes)** : Converts the picture in another byte space. 
 
-**bl_Compress:**
-A common color correction function that pushes the low color to a value and the high color to one another. While tempting to made a color matching between 2 picture this Macro might be really usefull.
+**[bl_Compress](/Macros/BL/Color/bl_Compress)** : A common color correction function that pushes the low color to a value and the high color to one another. While tempting to made a color matching between 2 picture this Macro might be really usefull.
 
 **bl_Expand:**
 Does the exact reverse of the Compress node. It stretches the color between to low and high color values.
