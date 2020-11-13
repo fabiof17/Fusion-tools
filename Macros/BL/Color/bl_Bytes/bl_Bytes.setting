@@ -1,19 +1,13 @@
 {
 	Tools = ordered() {
-		bl_Bytes1 = MacroOperator {
+		bl_Bytes = MacroOperator {
 			Inputs = ordered() {
 				MainInput1 = InstanceInput {
-					SourceOp = "multiply1",
-					Source = "Image1",
+					SourceOp = "Img",
+					Source = "Input",
 					Name = "Img",
 				},
 				Input1 = InstanceInput {
-					SourceOp = "multiply1",
-					Source = "MultValue",
-					Name = "Bytes",
-					Default = 2,
-				},
-				Input2 = InstanceInput {
 					SourceOp = "multiply2",
 					Source = "MultValue",
 					Name = "Bytes",
@@ -27,14 +21,74 @@
 					Source = "Output",
 				}
 			},
-			ViewInfo = GroupInfo {
-				Name = "bl_Bytes",
-				Pos = { 0, 0 }
-			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
 			Tools = ordered() {
+				CustomTool = Custom {
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "CustomToolLUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomToolLUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomToolLUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomToolLUTIn4",
+							Source = "Value",
+						},
+						RedExpression = Input { Value = "int(r1)", },
+						GreenExpression = Input { Value = "int(g1)", },
+						BlueExpression = Input { Value = "int(b1)", },
+						Image1 = Input {
+							SourceOp = "multiply1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2255, 676.5 } },
+				},
+				CustomToolLUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				CustomToolLUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				CustomToolLUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				CustomToolLUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
 				multiply1 = Custom {
-					CtrlWZoom = false,
-					CtrlWShown = false,
 					NameSet = true,
 					Inputs = {
 						LUTIn1 = Input {
@@ -60,6 +114,10 @@
 						RedExpression = Input { Value = "r1*(I1^2)", },
 						GreenExpression = Input { Value = "g1*(I1^2)", },
 						BlueExpression = Input { Value = "b1*(I1^2)", },
+						Image1 = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
 					},
 					ViewInfo = OperatorInfo { Pos = { 2255, 544.5 } },
 					UserControls = ordered() {
@@ -84,7 +142,6 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 0, Blue = 0 },
-					CtrlWShown = false,
 				},
 				multiply1LUTIn2 = LUTBezier {
 					KeyColorSplines = {
@@ -94,7 +151,6 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 204, Blue = 0 },
-					CtrlWShown = false,
 				},
 				multiply1LUTIn3 = LUTBezier {
 					KeyColorSplines = {
@@ -104,7 +160,6 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 0, Blue = 204 },
-					CtrlWShown = false,
 				},
 				multiply1LUTIn4 = LUTBezier {
 					KeyColorSplines = {
@@ -114,96 +169,29 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
-					CtrlWShown = false,
 				},
-				CustomTool = Custom {
-					CtrlWShown = false,
+				Img = PipeRouter {
 					NameSet = true,
-					Inputs = {
-						LUTIn1 = Input {
-							SourceOp = "CustomTool2LUTIn1",
-							Source = "Value",
-						},
-						LUTIn2 = Input {
-							SourceOp = "CustomTool2LUTIn2",
-							Source = "Value",
-						},
-						LUTIn3 = Input {
-							SourceOp = "CustomTool2LUTIn3",
-							Source = "Value",
-						},
-						LUTIn4 = Input {
-							SourceOp = "CustomTool2LUTIn4",
-							Source = "Value",
-						},
-						RedExpression = Input { Value = "int(r1)", },
-						GreenExpression = Input { Value = "int(g1)", },
-						BlueExpression = Input { Value = "int(b1)", },
-						Image1 = Input {
-							SourceOp = "multiply1",
-							Source = "Output",
-						},
-					},
-					ViewInfo = OperatorInfo { Pos = { 2255, 676.5 } },
-				},
-				CustomTool2LUTIn1 = LUTBezier {
-					KeyColorSplines = {
-						[0] = {
-							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
-							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
-						}
-					},
-					SplineColor = { Red = 204, Green = 0, Blue = 0 },
-					CtrlWShown = false,
-				},
-				CustomTool2LUTIn2 = LUTBezier {
-					KeyColorSplines = {
-						[0] = {
-							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
-							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
-						}
-					},
-					SplineColor = { Red = 0, Green = 204, Blue = 0 },
-					CtrlWShown = false,
-				},
-				CustomTool2LUTIn3 = LUTBezier {
-					KeyColorSplines = {
-						[0] = {
-							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
-							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
-						}
-					},
-					SplineColor = { Red = 0, Green = 0, Blue = 204 },
-					CtrlWShown = false,
-				},
-				CustomTool2LUTIn4 = LUTBezier {
-					KeyColorSplines = {
-						[0] = {
-							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
-							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
-						}
-					},
-					SplineColor = { Red = 204, Green = 204, Blue = 204 },
-					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { 2255, 313.5 } },
 				},
 				multiply2 = Custom {
-					CtrlWShown = false,
+					CtrlWZoom = false,
 					NameSet = true,
 					Inputs = {
 						LUTIn1 = Input {
-							SourceOp = "multiply1_1LUTIn1",
+							SourceOp = "multiply2LUTIn1",
 							Source = "Value",
 						},
 						LUTIn2 = Input {
-							SourceOp = "multiply1_1LUTIn2",
+							SourceOp = "multiply2LUTIn2",
 							Source = "Value",
 						},
 						LUTIn3 = Input {
-							SourceOp = "multiply1_1LUTIn3",
+							SourceOp = "multiply2LUTIn3",
 							Source = "Value",
 						},
 						LUTIn4 = Input {
-							SourceOp = "multiply1_1LUTIn4",
+							SourceOp = "multiply2LUTIn4",
 							Source = "Value",
 						},
 						Intermediate1 = Input {
@@ -233,7 +221,7 @@
 						}
 					}
 				},
-				multiply1_1LUTIn1 = LUTBezier {
+				multiply2LUTIn1 = LUTBezier {
 					KeyColorSplines = {
 						[0] = {
 							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
@@ -241,9 +229,8 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 0, Blue = 0 },
-					CtrlWShown = false,
 				},
-				multiply1_1LUTIn2 = LUTBezier {
+				multiply2LUTIn2 = LUTBezier {
 					KeyColorSplines = {
 						[0] = {
 							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
@@ -251,9 +238,8 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 204, Blue = 0 },
-					CtrlWShown = false,
 				},
-				multiply1_1LUTIn3 = LUTBezier {
+				multiply2LUTIn3 = LUTBezier {
 					KeyColorSplines = {
 						[0] = {
 							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
@@ -261,9 +247,8 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 0, Blue = 204 },
-					CtrlWShown = false,
 				},
-				multiply1_1LUTIn4 = LUTBezier {
+				multiply2LUTIn4 = LUTBezier {
 					KeyColorSplines = {
 						[0] = {
 							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
@@ -271,10 +256,9 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
-					CtrlWShown = false,
 				}
 			},
 		}
 	},
-	ActiveTool = "bl_Bytes1"
+	ActiveTool = "bl_Bytes"
 }
