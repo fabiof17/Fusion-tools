@@ -15,16 +15,19 @@
 					SourceOp = "lowval",
 					Source = "Red",
 					ControlGroup = 6,
+					Name = "Red Low",
 				},
 				Input3 = InstanceInput {
 					SourceOp = "lowval",
 					Source = "Green",
 					ControlGroup = 7,
+					Name = "Green Low",
 				},
 				Input4 = InstanceInput {
 					SourceOp = "lowval",
 					Source = "Blue",
 					ControlGroup = 8,
+					Name = "Blue Low",
 				},
 				Input45 = InstanceInput {
 					SourceOp = "highval",
@@ -37,18 +40,21 @@
 					Source = "Red",
 					ControlGroup = 2,
 					Default = 1,
+					Name = "Red High",
 				},
 				Input7 = InstanceInput {
 					SourceOp = "highval",
 					Source = "Green",
 					ControlGroup = 3,
 					Default = 1,
+					Name = "Green High",
 				},
 				Input8 = InstanceInput {
 					SourceOp = "highval",
 					Source = "Blue",
 					ControlGroup = 4,
 					Default = 1,
+					Name = "Blue High",
 				},
 			},
 			Outputs = {
