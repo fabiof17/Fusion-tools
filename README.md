@@ -7,8 +7,8 @@
 ### BL/Color
 **[bl_Bytes](/Macros/BL/Color/bl_Bytes)** : Converts the picture in another byte space. 
 
-**bl_ChromaticAberation:**
-A simple chromatic aberation tool.
+### BL/Warp
+**[bl_ChromaticAberation](/Macros/BL/Warp/bl_ChromaticAberation)** : A simple chromatic aberation tool.
 
 **bl_Compress:**
 A common color correction function that pushes the low color to a value and the high color to one another. While tempting to made a color matching between 2 picture this Macro might be really usefull.
