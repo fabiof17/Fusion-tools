@@ -1,16 +1,23 @@
 {
 	Tools = ordered() {
-		bl_Bytes = MacroOperator {
+		bl_Bytes1 = MacroOperator {
 			Inputs = ordered() {
 				MainInput1 = InstanceInput {
 					SourceOp = "multiply1",
 					Source = "Image1",
-					Name = "In",
+					Name = "Img",
 				},
 				Input1 = InstanceInput {
 					SourceOp = "multiply1",
 					Source = "MultValue",
 					Name = "Bytes",
+					Default = 2,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "multiply2",
+					Source = "MultValue",
+					Name = "Bytes",
+					MinScale = 1,
 					Default = 2,
 				},
 			},
@@ -20,10 +27,14 @@
 					Source = "Output",
 				}
 			},
-			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			ViewInfo = GroupInfo {
+				Name = "bl_Bytes",
+				Pos = { 0, 0 }
+			},
 			Tools = ordered() {
 				multiply1 = Custom {
 					CtrlWZoom = false,
+					CtrlWShown = false,
 					NameSet = true,
 					Inputs = {
 						LUTIn1 = Input {
@@ -73,6 +84,7 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+					CtrlWShown = false,
 				},
 				multiply1LUTIn2 = LUTBezier {
 					KeyColorSplines = {
@@ -82,6 +94,7 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+					CtrlWShown = false,
 				},
 				multiply1LUTIn3 = LUTBezier {
 					KeyColorSplines = {
@@ -91,6 +104,7 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+					CtrlWShown = false,
 				},
 				multiply1LUTIn4 = LUTBezier {
 					KeyColorSplines = {
@@ -100,8 +114,10 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+					CtrlWShown = false,
 				},
 				CustomTool = Custom {
+					CtrlWShown = false,
 					NameSet = true,
 					Inputs = {
 						LUTIn1 = Input {
@@ -138,6 +154,7 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+					CtrlWShown = false,
 				},
 				CustomTool2LUTIn2 = LUTBezier {
 					KeyColorSplines = {
@@ -147,6 +164,7 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+					CtrlWShown = false,
 				},
 				CustomTool2LUTIn3 = LUTBezier {
 					KeyColorSplines = {
@@ -156,6 +174,7 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+					CtrlWShown = false,
 				},
 				CustomTool2LUTIn4 = LUTBezier {
 					KeyColorSplines = {
@@ -165,8 +184,10 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+					CtrlWShown = false,
 				},
 				multiply2 = Custom {
+					CtrlWShown = false,
 					NameSet = true,
 					Inputs = {
 						LUTIn1 = Input {
@@ -220,6 +241,7 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+					CtrlWShown = false,
 				},
 				multiply1_1LUTIn2 = LUTBezier {
 					KeyColorSplines = {
@@ -229,6 +251,7 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+					CtrlWShown = false,
 				},
 				multiply1_1LUTIn3 = LUTBezier {
 					KeyColorSplines = {
@@ -238,6 +261,7 @@
 						}
 					},
 					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+					CtrlWShown = false,
 				},
 				multiply1_1LUTIn4 = LUTBezier {
 					KeyColorSplines = {
@@ -247,9 +271,10 @@
 						}
 					},
 					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+					CtrlWShown = false,
 				}
 			},
 		}
 	},
-	ActiveTool = "bl_Bytes"
+	ActiveTool = "bl_Bytes1"
 }
