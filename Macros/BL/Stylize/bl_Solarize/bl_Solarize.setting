@@ -5,7 +5,7 @@
 				MainInput1 = InstanceInput {
 					SourceOp = "PipeRouter1",
 					Source = "Input",
-					Name = "In",
+					Name = "Img",
 				},
 				Input1 = InstanceInput {
 					SourceOp = "sol_value",
