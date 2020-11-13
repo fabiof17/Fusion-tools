@@ -4,9 +4,8 @@
 
  ## Macros
 
-### BL
-**bl_Bytes:**
-Converts the picture in another byte space.
+### BL/Color
+- <img src='/BL/Color/bl_Bytes/bl_Bytes.png'> **[bl_Bytes](/BL/Color/bl_Bytes)** : Converts the picture in another byte space. 
 
 **bl_ChromaticAberation:**
 A simple chromatic aberation tool.
