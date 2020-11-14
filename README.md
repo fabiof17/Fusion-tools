@@ -55,6 +55,9 @@ Simple hue and saturation adjustment by adding constants to pixel values in HSL 
 **PxF_KillSpill:**
 Remove red/green/blue spill.
 
+**PxF_MergeWrap:**
+An "over" with built-in back and front light wrap.
+
 ### Warp
 **PushPixel:**
 A simple push pixel tool.
