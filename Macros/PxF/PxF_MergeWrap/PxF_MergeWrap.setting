@@ -1,0 +1,437 @@
+{
+	Tools = ordered() {
+		PxF_MergeWrap = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Bg",
+					Source = "Input",
+					Name = "Bg",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "Fg",
+					Source = "Input",
+					Name = "Fg",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "ControleGloabl",
+					Source = "BackMerge",
+					Name = "Back Merge",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "ControleGloabl",
+					Source = "BackBlur",
+					Name = "Back Blur",
+					Default = 20,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "ControleGloabl",
+					Source = "BackMix",
+					Name = "Back Mix",
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "ControleGloabl",
+					Source = "FrontMerge",
+					Name = "Front Merge",
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "ControleGloabl",
+					Source = "FrontBlur",
+					Name = "Front Blur",
+					Default = 20,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "ControleGloabl",
+					Source = "FrontMix",
+					Name = "Front Mix",
+					Default = 1,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "ChannelBooleans3",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Fg = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 495, 511.5 } },
+				},
+				Blur1 = Blur {
+					Inputs = {
+						XBlurSize = Input {
+							Value = 20,
+							Expression = "ControleGloabl.BackBlur",
+						},
+						Input = Input {
+							SourceOp = "Fg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 770, 511.5 } },
+				},
+				Merge3 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "SwitchFuse1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Fg",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 841.5 } },
+				},
+				CustomTool1 = Custom {
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "CustomTool1LUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool1LUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool1LUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool1LUTIn4",
+							Source = "Value",
+						},
+						RedExpression = Input { Value = "r1*a2", },
+						GreenExpression = Input { Value = "g1*a2", },
+						BlueExpression = Input { Value = "b1*a2", },
+						AlphaExpression = Input { Value = "a1*a2", },
+						Image1 = Input {
+							SourceOp = "Blur2",
+							Source = "Output",
+						},
+						Image2 = Input {
+							SourceOp = "Fg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 1171.5 } },
+				},
+				CustomTool1LUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				CustomTool1LUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				CustomTool1LUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				CustomTool1LUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				Blur2 = Blur {
+					NameSet = true,
+					Inputs = {
+						XBlurSize = Input {
+							Value = 20,
+							Expression = "ControleGloabl.FrontBlur",
+						},
+						Input = Input {
+							SourceOp = "ChannelBooleans2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 1072.5 } },
+				},
+				ChannelBooleans2 = ChannelBoolean {
+					Inputs = {
+						Operation = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Fg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 973.5 } },
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Blend = Input { Expression = "ControleGloabl.BackMix", },
+						Background = Input {
+							SourceOp = "Bg",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Blur1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 990, 511.5 } },
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						ToAlpha = Input { Value = 16, },
+						Background = Input {
+							SourceOp = "Merge3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 973.5 } },
+				},
+				Merge2 = Merge {
+					Inputs = {
+						Blend = Input { Expression = "ControleGloabl.BackMix", },
+						Background = Input {
+							SourceOp = "Bg",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge1",
+							Source = "Output",
+						},
+						BurnIn = Input { Value = 1, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 511.5 } },
+				},
+				SwitchFuse1 = Fuse.Switch {
+					Inputs = {
+						Which = Input {
+							Value = 1,
+							Expression = "(ControleGloabl.BackMerge)+1",
+						},
+						Input1 = Input {
+							SourceOp = "Merge1",
+							Source = "Output",
+						},
+						Input2 = Input {
+							SourceOp = "Merge2",
+							Source = "Output",
+						},
+						Input3 = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 709.5 } },
+					Version = 172
+				},
+				SwitchFuse1_1 = Fuse.Switch {
+					Inputs = {
+						Which = Input {
+							Value = 1,
+							Expression = "(ControleGloabl.FrontMerge)+1",
+						},
+						Input1 = Input {
+							SourceOp = "Merge4",
+							Source = "Output",
+						},
+						Input2 = Input {
+							SourceOp = "Merge4_1",
+							Source = "Output",
+						},
+						Input3 = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 1468.5 } },
+					Version = 172
+				},
+				Merge4_1 = Merge {
+					Inputs = {
+						Blend = Input { Expression = "ControleGloabl.FrontMix", },
+						Background = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						},
+						BurnIn = Input { Value = 1, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 1303.5 } },
+				},
+				Merge4 = Merge {
+					Inputs = {
+						Blend = Input { Expression = "ControleGloabl.FrontMix", },
+						Background = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "CustomTool1",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 935, 1303.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Bg",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1430, 511.5 } },
+				},
+				Bg = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 1210, 346.5 } },
+				},
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1375, 1303.5 } },
+				},
+				ControleGloabl = Blur {
+					CtrlWZoom = false,
+					NameSet = true,
+					ViewInfo = OperatorInfo { Pos = { 1650, 511.5 } },
+					UserControls = ordered() {
+						BackBlur = {
+							LINKS_Name = "BackBlur",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 20,
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 100,
+							INP_MinAllowed = 0,
+							INP_MaxAllowed = 100,
+						},
+						BackMerge = {
+							LINKS_Name = "BackMerge",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ComboControl",
+							INP_Integer = false,
+							{ CCS_AddString = "Over" },
+							{ CCS_AddString = "Plus" },
+							{ CCS_AddString = "Disable" },
+							CC_LabelPosition = "Horizontal",
+							INP_External = false,
+						},
+						BackMix = {
+							LINKS_Name = "BackMix",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							INP_MinAllowed = 0,
+							INP_MaxAllowed = 1,
+						},
+						FrontBlur = {
+							LINKS_Name = "FrontBlur",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 20,
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 100,
+							INP_MinAllowed = 0,
+							INP_MaxAllowed = 100,
+						},
+						FrontMerge = {
+							LINKS_Name = "FrontMerge",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ComboControl",
+							INP_Integer = false,
+							{ CCS_AddString = "Over" },
+							{ CCS_AddString = "Plus" },
+							{ CCS_AddString = "Disable" },
+							CC_LabelPosition = "Horizontal",
+						},
+						FrontMix = {
+							LINKS_Name = "FrontMix",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "SliderControl",
+							INP_Default = 1,
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 1,
+							INP_MinAllowed = 0,
+							INP_MaxAllowed = 1,
+						}
+					}
+				},
+				ChannelBooleans3 = ChannelBoolean {
+					Inputs = {
+						ToAlpha = Input { Value = 8, },
+						Background = Input {
+							SourceOp = "PipeRouter4",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SwitchFuse1_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 1666.5 } },
+				},
+				PipeRouter3 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Merge3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1595, 841.5 } },
+				},
+				PipeRouter4 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter3",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1595, 1666.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "PxF_MergeWrap"
+}
