@@ -1,0 +1,524 @@
+{
+	Tools = ordered() {
+		PxF_KillSpill = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Img",
+					Source = "Input",
+					Name = "Img",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "ControleGlobal",
+					Source = "ScreenColor",
+					Name = "Screen Color",
+					Default = 1,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "ControleGlobal",
+					Source = "Suppression",
+					Default = 0.5,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "ControleGlobal",
+					Source = "Limiter",
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "ControleGlobal",
+					Source = "Red",
+					ControlGroup = 5,
+					Default = 1,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "ControleGlobal",
+					Source = "Green",
+					ControlGroup = 5,
+					Default = 1,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "ControleGlobal",
+					Source = "Blue",
+					ControlGroup = 5,
+					Default = 1,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Merge1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				CustomTool_GREEN = Custom {
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "CustomTool_GREENLUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool_GREENLUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool_GREENLUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool_GREENLUTIn4",
+							Source = "Value",
+						},
+						Setup1 = Input {
+							Value = "0.5",
+							Expression = "ControleGlobal.Suppression",
+						},
+						Setup2 = Input {
+							Value = "1",
+							Expression = "ControleGlobal.Limiter",
+						},
+						Intermediate1 = Input { Value = "r1*(1-S1)", },
+						Intermediate2 = Input { Value = "b1*S1", },
+						GreenExpression = Input { Value = "min( ( (i1+i2)*S2),g1 )", },
+						AlphaExpression = Input { Value = "", },
+						Image1 = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 478.5 } },
+				},
+				CustomTool_GREENLUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				CustomTool_GREENLUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				CustomTool_GREENLUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				CustomTool_GREENLUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				CustomTool_RED = Custom {
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "CustomTool_REDLUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool_REDLUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool_REDLUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool_REDLUTIn4",
+							Source = "Value",
+						},
+						Setup1 = Input {
+							Value = "0.5",
+							Expression = "ControleGlobal.Suppression",
+						},
+						Setup2 = Input {
+							Value = "1",
+							Expression = "ControleGlobal.Limiter",
+						},
+						Intermediate1 = Input { Value = "g1*(1-S1)", },
+						Intermediate2 = Input { Value = "b1*S1", },
+						RedExpression = Input { Value = "min( ( (i1+i2)*S2),r1 )", },
+						AlphaExpression = Input { Value = "", },
+						Image1 = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1155, 478.5 } },
+				},
+				CustomTool_REDLUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				CustomTool_REDLUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				CustomTool_REDLUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				CustomTool_REDLUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				Img = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 1595, 115.5 } },
+				},
+				PipeRouter2 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1595, 280.5 } },
+				},
+				RED = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { 1152.88, 412.5 },
+						Size = { 428.281, 135.087 }
+					},
+					Colors = {
+						TileColor = { R = 1, G = 0, B = 0 },
+						TextColor = { R = 0, G = 0, B = 0 },
+					}
+				},
+				SwitchFuse1 = Fuse.Switch {
+					Inputs = {
+						Which = Input {
+							Value = 2,
+							Expression = "(ControleGlobal.ScreenColor)+1",
+						},
+						Input1 = Input {
+							SourceOp = "CustomTool_RED",
+							Source = "Output",
+						},
+						Input2 = Input {
+							SourceOp = "CustomTool_GREEN",
+							Source = "Output",
+						},
+						Input3 = Input {
+							SourceOp = "CustomTool_BLUE",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 742.5 } },
+					Version = 172
+				},
+				CustomTool_BLUE = Custom {
+					NameSet = true,
+					Inputs = {
+						LUTIn1 = Input {
+							SourceOp = "CustomTool_BLUELUTIn1",
+							Source = "Value",
+						},
+						LUTIn2 = Input {
+							SourceOp = "CustomTool_BLUELUTIn2",
+							Source = "Value",
+						},
+						LUTIn3 = Input {
+							SourceOp = "CustomTool_BLUELUTIn3",
+							Source = "Value",
+						},
+						LUTIn4 = Input {
+							SourceOp = "CustomTool_BLUELUTIn4",
+							Source = "Value",
+						},
+						Setup1 = Input {
+							Value = "0.5",
+							Expression = "ControleGlobal.Suppression",
+						},
+						Setup2 = Input {
+							Value = "1",
+							Expression = "ControleGlobal.Limiter",
+						},
+						Intermediate1 = Input { Value = "r1*(1-S1)", },
+						Intermediate2 = Input { Value = "g1*S1", },
+						BlueExpression = Input { Value = "min(  ((i1+i2)*S2),b1)", },
+						AlphaExpression = Input { Value = "", },
+						Image1 = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2090, 478.5 } },
+				},
+				CustomTool_BLUELUTIn1 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 0, Blue = 0 },
+				},
+				CustomTool_BLUELUTIn2 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 204, Blue = 0 },
+				},
+				CustomTool_BLUELUTIn3 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 0, Green = 0, Blue = 204 },
+				},
+				CustomTool_BLUELUTIn4 = LUTBezier {
+					KeyColorSplines = {
+						[0] = {
+							[0] = { 0, RH = { 0.333333333333333, 0.333333333333333 }, Flags = { Linear = true } },
+							[1] = { 1, LH = { 0.666666666666667, 0.666666666666667 }, Flags = { Linear = true } }
+						}
+					},
+					SplineColor = { Red = 204, Green = 204, Blue = 204 },
+				},
+				GREEN = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { 1597.99, 426.355 },
+						Size = { 389.896, 137.948 }
+					},
+					Colors = {
+						TileColor = { R = 0.298039215686275, G = 0.666666666666667, B = 0 },
+						TextColor = { R = 0, G = 0, B = 0 },
+					}
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					Inputs = {
+						Operation = Input { Value = 2, },
+						Background = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SwitchFuse1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2365, 742.5 } },
+				},
+				Merge1 = Merge {
+					Inputs = {
+						Background = Input {
+							SourceOp = "ColorGain1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SwitchFuse1",
+							Source = "Output",
+						},
+						BurnIn = Input { Value = 1, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 940.5 } },
+				},
+				ColorGain1 = ColorGain {
+					Inputs = {
+						GainRed = Input { Expression = "ControleGlobal.Red", },
+						GainGreen = Input { Expression = "ControleGlobal.Green", },
+						GainBlue = Input { Expression = "ControleGlobal.Blue", },
+						ColorRanges = Input {
+							Value = ColorCurves {
+								Curves = {
+									{
+										Points = {
+											{ 0, 1 },
+											{ 0.125, 0.75 },
+											{ 0.375, 0.25 },
+											{ 0.5, 0 }
+										}
+									},
+									{
+										Points = {
+											{ 0.5, 0 },
+											{ 0.625, 0.25 },
+											{ 0.875, 0.75 },
+											{ 1, 1 }
+										}
+									}
+								}
+							},
+						},
+						Input = Input {
+							SourceOp = "Saturation1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2365, 940.5 } },
+				},
+				Saturation1 = BrightnessContrast {
+					NameSet = true,
+					Inputs = {
+						Saturation = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 2365, 841.5 } },
+				},
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "PipeRouter2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 2365, 280.5 } },
+				},
+				BLUE = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { 2073.16, 410.011 },
+						Size = { 501.255, 140.807 }
+					},
+					Colors = {
+						TileColor = { R = 0, G = 0, B = 1 },
+						TextColor = { R = 0, G = 0, B = 0 },
+					}
+				},
+				ControleGlobal = Blur {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						ScreenColor = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 2970, 379.5 } },
+					UserControls = ordered() {
+						Suppression = {
+							INP_MaxAllowed = 2,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 2,
+							INP_Default = 0.5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Suppression",
+						},
+						Limiter = {
+							INP_MaxAllowed = 10,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 10,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Limiter",
+						},
+						ScreenColor = {
+							{ CCS_AddString = "Red" },
+							{ CCS_AddString = "Green" },
+							{ CCS_AddString = "Blue" },
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							CC_LabelPosition = "Horizontal",
+							INPID_InputControl = "ComboControl",
+							LINKS_Name = "ScreenColor",
+						},
+						Red = {
+							LINKS_Name = "SpillTweak",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ColorControl",
+							INP_Default = 1,
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 10,
+							INP_MinAllowed = -1000000,
+							INP_MaxAllowed = 1000000,
+							IC_ControlGroup = 1,
+							IC_ControlID = 0,
+							CLRC_ColorSpace = "HSV",
+							CLRC_ShowWheel = true,
+						},
+						Green = {
+							LINKS_Name = "SpillTweak",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ColorControl",
+							INP_Default = 1,
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 10,
+							INP_MinAllowed = -1000000,
+							INP_MaxAllowed = 1000000,
+							IC_ControlGroup = 1,
+							IC_ControlID = 1,
+							CLRC_ColorSpace = "HSV",
+							CLRC_ShowWheel = true,
+						},
+						Blue = {
+							LINKS_Name = "SpillTweak",
+							LINKID_DataType = "Number",
+							INPID_InputControl = "ColorControl",
+							INP_Default = 1,
+							INP_Integer = false,
+							INP_MinScale = 0,
+							INP_MaxScale = 10,
+							INP_MinAllowed = -1000000,
+							INP_MaxAllowed = 1000000,
+							IC_ControlGroup = 1,
+							IC_ControlID = 2,
+							CLRC_ColorSpace = "HSV",
+							CLRC_ShowWheel = true,
+						}
+					}
+				},
+				CONTROLES = Underlay {
+					NameSet = true,
+					ViewInfo = UnderlayInfo {
+						Pos = { 2973.69, 314.197 },
+						Size = { 454.864, 143.947 }
+					},
+				}
+			},
+		}
+	},
+	ActiveTool = "PxF_KillSpill"
+}
