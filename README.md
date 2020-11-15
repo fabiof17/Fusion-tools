@@ -46,6 +46,9 @@ Another Additive Keyer with a few added tweaks. Much of the tool was taken from 
 **PxF_Bandpass:**
 Extract detail from an image. Useful to make plates easier to track.
 
+**PxF_ScreenClean:**
+Use a clean plate to clean up blue/red/green screens.
+
 **PxF_Distort:**
 Generate glass-like refraction effects using a deformation map. Can also be used to grow edges on tricky chroma keys by using the alpha to deform the RGB channels. 
 
