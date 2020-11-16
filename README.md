@@ -14,7 +14,7 @@
 **[bl_Monochrome](/Macros/BL/Color/bl_Monochrome)** : Same as the Shake's Monochrome node. You can play independently with the 3 color components.
 
 ### BL/Morphological
-**bl_mf_Binary:** Modify binary mask.
+**bl_mf_Binary :** Modify binary mask.
 
 ### BL/Stylize
 **[bl_Solarize](/Macros/BL/Stylize/bl_Solarize)** : A clone of the Shake's solarize command.
@@ -23,47 +23,47 @@
 **[bl_ChromaticAberation](/Macros/BL/Warp/bl_ChromaticAberation)** : A simple chromatic aberation tool.
 
 ### COLOR
-**Firefly_Killer:**
+**Firefly_Killer :**
 Removes fireflies, very bright, nervously jumping around pixels.
 
 ### FILTER
-**Sharpen_C:**
-Sharpen filter.
+**CH_FrequencySeparation :**Frequency separation filter.
 
-**CH_FrequencySeparation:**
-Frequency separation filter.
+**Learn_Matrix :**Apply a Matrix Filter 3x3 to your image
+
+**Sharpen_C :**Sharpen filter.
 
 ### LP (Luma Pictures)
-**L_Fuse:**
+**L_Fuse :**
 Fuse is a replacement for the merge(over) node. Functions for light wrap and hue wrap onto the foreground.
 
 ### LUT
-**LinearToHSL:**
+**LinearToHSL :**
 Converts an image from Linear to HSL colorspace.
 
 ### MERGE
-**AdditiveKeyer:**
+**AdditiveKeyer :**
 Another Additive Keyer with a few added tweaks. Much of the tool was taken from the great article by rafal kaniewski.
 
 ### PXF
-**PxF_Bandpass:**
+**PxF_Bandpass :**
 Extract detail from an image. Useful to make plates easier to track.
 
-**PxF_Distort:**
+**PxF_Distort :**
 Generate glass-like refraction effects using a deformation map. Can also be used to grow edges on tricky chroma keys by using the alpha to deform the RGB channels. 
 
-**PxF_HueSat:**
+**PxF_HueSat :**
 Simple hue and saturation adjustment by adding constants to pixel values in HSL colorspace.
 
-**PxF_KillSpill:**
+**PxF_KillSpill :**
 Remove red/green/blue spill.
 
-**PxF_MergeWrap:**
+**PxF_MergeWrap :**
 An "over" with built-in back and front light wrap.
 
-**PxF_ScreenClean:**
+**PxF_ScreenClean :**
 Use a clean plate to clean up blue/red/green screens.
 
 ### Warp
-**PushPixel:**
+**PushPixel :**
 A simple push pixel tool.
