@@ -27,11 +27,14 @@
 Removes fireflies, very bright, nervously jumping around pixels.
 
 ### FILTER
-**CH_FrequencySeparation :**Frequency separation filter.
+**CH_FrequencySeparation :**
+Frequency separation filter.
 
-**Learn_Matrix :**Apply a Matrix Filter 3x3 to your image
+**Learn_Matrix :**
+Apply a Matrix Filter 3x3 to your image
 
-**Sharpen_C :**Sharpen filter.
+**Sharpen_C :**
+Sharpen filter.
 
 ### LP (Luma Pictures)
 **L_Fuse :**
