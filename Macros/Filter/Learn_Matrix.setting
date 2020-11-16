@@ -1,0 +1,534 @@
+{
+	Tools = ordered() {
+		Learn_Matrix = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "SelectMAtrix",
+					Source = "SelectMatrix",
+					Name = "Select Matrix",
+					Default = 0,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "Img",
+					Source = "Input",
+					Name = "Img",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "SelectMAtrix",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Right_Sobel_1 = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 0, 1, 1, 1, 1, 1, -2, 0, 2, 1, 1, 1, 1, -1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1870, 280.5 } },
+				},
+				Right_Sobel = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, -1, 1, 1, 1, 1, 2, 0, -2, 1, 1, 1, 1, 1, 0, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 280.5 } },
+				},
+				Bottom_Sobel = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -2, -1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1540, 280.5 } },
+				},
+				Top_Sobel = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, -1, -2, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1375, 280.5 } },
+				},
+				Outline = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, 1, 1, 1, 1, -1, 8, -1, 1, 1, 1, 1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1210, 280.5 } },
+				},
+				Emboss = CustomFilter {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -2, -1, 0, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1045, 280.5 } },
+				},
+				SelectMAtrix = Fuse.Switch {
+					NameSet = true,
+					Inputs = {
+						Which = Input {
+							Value = 1,
+							Expression = "SelectMatrix+1",
+						},
+						Input1 = Input {
+							SourceOp = "Identity",
+							Source = "Output",
+						},
+						Input2 = Input {
+							SourceOp = "Smoothing",
+							Source = "Output",
+						},
+						Input3 = Input {
+							SourceOp = "Gaussian_Blur",
+							Source = "Output",
+						},
+						Input4 = Input {
+							SourceOp = "AntiAliasing_Filter1",
+							Source = "Output",
+						},
+						Input5 = Input {
+							SourceOp = "AntiAliasing_Filter2",
+							Source = "Output",
+						},
+						Input6 = Input {
+							SourceOp = "Sharpen",
+							Source = "Output",
+						},
+						Input7 = Input {
+							SourceOp = "Intensified_Sharpen",
+							Source = "Output",
+						},
+						Input8 = Input {
+							SourceOp = "Edge_Detect",
+							Source = "Output",
+						},
+						Input9 = Input {
+							SourceOp = "Edge_Enhance",
+							Source = "Output",
+						},
+						Input10 = Input {
+							SourceOp = "Emboss",
+							Source = "Output",
+						},
+						Input11 = Input {
+							SourceOp = "Outline",
+							Source = "Output",
+						},
+						Input12 = Input {
+							SourceOp = "Top_Sobel",
+							Source = "Output",
+						},
+						Input13 = Input {
+							SourceOp = "Bottom_Sobel",
+							Source = "Output",
+						},
+						Input14 = Input {
+							SourceOp = "Right_Sobel",
+							Source = "Output",
+						},
+						Input15 = Input {
+							SourceOp = "Right_Sobel_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 610.5 } },
+					UserControls = ordered() {
+						SelectMatrix = {
+							{ CCS_AddString = "Identity" },
+							{ CCS_AddString = "Smoothing" },
+							{ CCS_AddString = "Gaussian Blur" },
+							{ CCS_AddString = "Antialiasing 1" },
+							{ CCS_AddString = "Antialiasing 2" },
+							{ CCS_AddString = "Sharpen" },
+							{ CCS_AddString = "Intensified Sharpen" },
+							{ CCS_AddString = "Edge Detect" },
+							{ CCS_AddString = "Edge Enhance" },
+							{ CCS_AddString = "Emboss" },
+							{ CCS_AddString = "Outline" },
+							{ CCS_AddString = "Top Sobel" },
+							{ CCS_AddString = "Bottom Sobel" },
+							{ CCS_AddString = "Right Sobel" },
+							{ CCS_AddString = "Left Sobel" },
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							CC_LabelPosition = "Horizontal",
+							INPID_InputControl = "ComboControl",
+							LINKS_Name = "SelectMatrix",
+						}
+					},
+					Version = 172
+				},
+				Edge_Enhance = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, -1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 280.5 } },
+				},
+				Img = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 880, 148.5 } },
+				},
+				Edge_Detect = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, -4, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 715, 280.5 } },
+				},
+				Intensified_Sharpen = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, 1, 1, 1, 1, -1, 9, -1, 1, 1, 1, 1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 550, 280.5 } },
+				},
+				Sharpen = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, -1, 0, 1, 1, 1, 1, -1, 5, -1, 1, 1, 1, 1, 0, -1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 385, 280.5 } },
+				},
+				AntiAliasing_Filter2 = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 4, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 220, 280.5 } },
+				},
+				AntiAliasing_Filter1 = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 55, 280.5 } },
+				},
+				Gaussian_Blur = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, 280.5 } },
+				},
+				Smoothing = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, 280.5 } },
+				},
+				Identity = CustomFilter {
+					NameSet = true,
+					Inputs = {
+						Alpha = Input { Value = 0, },
+						Matrix = Input {
+							Value = FilterTable {
+								NumEntries = 54,
+								Type = 6,
+								Offset = 0,
+								Minimum = 0,
+								Maximum = 1,
+								MinimumValue = 0,
+								MaximumValue = 1,
+								StartSlope = 1,
+								EndSlope = 1,
+								StartIn = 0,
+								EndIn = 1,
+								Table = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+							},
+						},
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -440, 280.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "Learn_Matrix"
+}
