@@ -13,6 +13,9 @@
 
 **[bl_Monochrome](/Macros/BL/Color/bl_Monochrome)** : Same as the Shake's Monochrome node. You can play independently with the 3 color components.
 
+### BL/Morphological
+**bl_mf_Binary:** Modify binary mask.
+
 ### BL/Stylize
 **[bl_Solarize](/Macros/BL/Stylize/bl_Solarize)** : A clone of the Shake's solarize command.
 
