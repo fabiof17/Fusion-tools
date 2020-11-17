@@ -20,6 +20,8 @@
 
 **bl_mf_Occlusion :** Modify binary mask with additional dilate/erode.
 
+**bl_mf_ShapeSofter :** Modify binary mask with additional blur.
+
 ### BL/Stylize
 **[bl_Solarize](/Macros/BL/Stylize/bl_Solarize)** : A clone of the Shake's solarize command.
 
