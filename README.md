@@ -18,6 +18,8 @@
 
 **bl_mf_DirectionalBlur :** Modify binary mask with additional directional blur.
 
+**bl_mf_Occlusion :** Modify binary mask with additional dilate/erode.
+
 ### BL/Stylize
 **[bl_Solarize](/Macros/BL/Stylize/bl_Solarize)** : A clone of the Shake's solarize command.
 
