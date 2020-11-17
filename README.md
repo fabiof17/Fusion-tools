@@ -73,6 +73,10 @@ An "over" with built-in back and front light wrap.
 **PxF_ScreenClean :**
 Use a clean plate to clean up blue/red/green screens.
 
+### TRANSFORM
+**ScanSlice :**
+Slice an image in 4 independant directions.
+
 ### Warp
 **PushPixel :**
 A simple push pixel tool.

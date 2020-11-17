@@ -1,0 +1,258 @@
+{
+	Tools = ordered() {
+		ScanSlice = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "Img",
+					Source = "Input",
+					Name = "Img",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "SetDomain1",
+					Source = "AdjustLeft",
+					MaxScale = 0.9990000128746,
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "SetDomain1",
+					Source = "AdjustBottom",
+					MaxScale = 0.9990000128746,
+					Default = 0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "SetDomain1",
+					Source = "NewRight",
+					Name = "Right",
+					MaxScale = 0.9990000128746,
+					Default = 0,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "SetDomain1",
+					Source = "NewTop",
+					Name = "Top",
+					MaxScale = 0.9990000128746,
+					Default = 0,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Switch",
+					Source = "OutputMatte",
+					Name = "Output Slice Matte",
+					Default = 0,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Switch",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				FrameFormat = BetterResize {
+					PassThrough = true,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 2048, },
+						Height = Input { Value = 1156, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "Img",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 214.5 } },
+				},
+				Img = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 880, 82.5 } },
+				},
+				SetDomain1 = SetDomain {
+					Inputs = {
+						AdjustRight = Input { Expression = "-NewRight", },
+						AdjustTop = Input { Expression = "-NewTop", },
+						Input = Input {
+							SourceOp = "FrameFormat",
+							Source = "Output",
+						},
+						Right = Input { Value = 0.9990000128746, },
+						Top = Input { Value = 0.9990000128746, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 280.5 } },
+					UserControls = ordered() {
+						AdjustLeft = {
+							INP_MaxAllowed = 0.999000012874603,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.999000012874603,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICD_Center = 0,
+							LINKS_Name = "Left",
+						},
+						AdjustBottom = {
+							INP_MaxAllowed = 0.999000012874603,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.999000012874603,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICD_Center = 0,
+							LINKS_Name = "Bottom",
+						},
+						Right = {
+							INP_MaxAllowed = 0.999000012874603,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 151,
+							INP_MaxScale = 0.999000012874603,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICD_Center = 0.5,
+							LINKS_Name = "Right",
+						},
+						Top = {
+							INP_MaxAllowed = 0.999000012874603,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 151,
+							INP_MaxScale = 0.999000012874603,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							ICD_Center = 0.5,
+							LINKS_Name = "Top",
+						},
+						NewRight = {
+							INP_MaxAllowed = 0.999000012874603,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.999000012874603,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "NewRight",
+						},
+						NewTop = {
+							INP_MaxAllowed = 0.999000012874603,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 0.999000012874603,
+							INP_Default = 0,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "NewTop",
+						}
+					}
+				},
+				Transform1 = Transform {
+					Inputs = {
+						Edges = Input { Value = 2, },
+						FilterMethod = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "SetDomain1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 346.5 } },
+				},
+				Instance_SetDomain1 = SetDomain {
+					SourceOp = "SetDomain1",
+					Inputs = {
+						AdjustRight = Input { Expression = "-SetDomain1.NewRight" },
+						AdjustTop = Input { Expression = "-SetDomain1.NewTop" },
+						Input = Input {
+							SourceOp = "Resize1",
+							Source = "Output",
+						},
+						Foreground = Input { },
+						StartEndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 280.5 } },
+				},
+				Background1 = Background {
+					CtrlWZoom = false,
+					Inputs = {
+						TopLeftRed = Input { Value = 1, },
+						TopLeftGreen = Input { Value = 1, },
+						TopLeftBlue = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 82.5 } },
+				},
+				Resize1 = BetterResize {
+					Inputs = {
+						Width = Input {
+							Value = 2048,
+							Expression = "FrameFormat.Output.OriginalWidth",
+						},
+						Height = Input {
+							Value = 1024,
+							Expression = "FrameFormat.Output.OriginalHeight",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						Input = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 214.5 } },
+				},
+				ChannelBooleans1 = ChannelBoolean {
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Instance_SetDomain1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1100, 346.5 } },
+				},
+				Switch = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					NameSet = true,
+					Inputs = {
+						Mix = Input {
+							Value = 0,
+							Expression = "OutputMatte",
+						},
+						Background = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "ChannelBooleans1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 445.5 } },
+					UserControls = ordered() {
+						OutputMatte = {
+							CBC_TriState = false,
+							INP_Integer = false,
+							LINKID_DataType = "Number",
+							INPID_InputControl = "CheckboxControl",
+							LINKS_Name = "OutputMatte",
+						}
+					}
+				}
+			},
+		}
+	},
+	ActiveTool = "ScanSlice"
+}
