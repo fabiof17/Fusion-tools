@@ -80,3 +80,12 @@ Slice an image in 4 independant directions.
 ### Warp
 **PushPixel :**
 A simple push pixel tool.
+
+--------------------------------------------------------------------------------------------------------------
+
+### Crédits:
+
+**BL : Gizmos originaux conçus par Bertrand Lempereur - www.z-way.org/script-and-gizmo/nuke/bl**
+
+**PXF : Gizmos originaux conçus par Xavier Bourque - www.pixelfudger.com**
+
