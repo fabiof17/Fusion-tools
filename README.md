@@ -87,5 +87,9 @@ A simple push pixel tool.
 
 **BL : Gizmos originaux conçus par Bertrand Lempereur**
 
+**Firefly_Killer : Gizmo original conçu par Stefan Müller - www.stefanmuller.com**
+
+**Learn_Matrix : Gizmo original conçu par Andrea Geremia - www.andreageremia.it**
+
 **PXF : Gizmos originaux conçus par Xavier Bourque - www.pixelfudger.com**
 
