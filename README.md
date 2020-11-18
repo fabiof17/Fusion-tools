@@ -85,7 +85,7 @@ A simple push pixel tool.
 
 ### Crédits:
 
-**BL : Gizmos originaux conçus par Bertrand Lempereur - www.z-way.org/script-and-gizmo/nuke/bl**
+**BL : Gizmos originaux conçus par Bertrand Lempereur**
 
 **PXF : Gizmos originaux conçus par Xavier Bourque - www.pixelfudger.com**
 
