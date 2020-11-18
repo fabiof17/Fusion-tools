@@ -4,6 +4,8 @@
 
  ## Macros
 
+--------------------------------------------------------------------------------------------------------------
+
 ### BL/Color
 **[bl_Bytes](/Macros/BL/Color/bl_Bytes)** : Converts the picture in another byte space. 
 
@@ -12,6 +14,8 @@
 **[bl_Expand](/Macros/BL/Color/bl_Expand)** : Does the exact reverse of the Compress node. It stretches the color between to low and high color values.
 
 **[bl_Monochrome](/Macros/BL/Color/bl_Monochrome)** : Same as the Shake's Monochrome node. You can play independently with the 3 color components.
+
+--------------------------------------------------------------------------------------------------------------
 
 ### BL/Morphological
 **bl_mf_Binary :** Modify binary mask.
@@ -22,15 +26,23 @@
 
 **bl_mf_ShapeSofter :** Modify binary mask with additional blur.
 
+--------------------------------------------------------------------------------------------------------------
+
 ### BL/Stylize
 **[bl_Solarize](/Macros/BL/Stylize/bl_Solarize)** : A clone of the Shake's solarize command.
+
+--------------------------------------------------------------------------------------------------------------
 
 ### BL/Warp
 **[bl_ChromaticAberation](/Macros/BL/Warp/bl_ChromaticAberation)** : A simple chromatic aberation tool.
 
+--------------------------------------------------------------------------------------------------------------
+
 ### COLOR
 **Firefly_Killer :**
 Removes fireflies, very bright, nervously jumping around pixels.
+
+--------------------------------------------------------------------------------------------------------------
 
 ### FILTER
 **CH_FrequencySeparation :**
@@ -42,17 +54,25 @@ Apply a Matrix Filter 3x3 to your image
 **Sharpen_C :**
 Sharpen filter.
 
+--------------------------------------------------------------------------------------------------------------
+
 ### LP (Luma Pictures)
 **L_Fuse :**
 Fuse is a replacement for the merge(over) node. Functions for light wrap and hue wrap onto the foreground.
+
+--------------------------------------------------------------------------------------------------------------
 
 ### LUT
 **LinearToHSL :**
 Converts an image from Linear to HSL colorspace.
 
+--------------------------------------------------------------------------------------------------------------
+
 ### MERGE
 **AdditiveKeyer :**
 Another Additive Keyer with a few added tweaks. Much of the tool was taken from the great article by rafal kaniewski.
+
+--------------------------------------------------------------------------------------------------------------
 
 ### PXF
 **PxF_Bandpass :**
@@ -73,11 +93,15 @@ An "over" with built-in back and front light wrap.
 **PxF_ScreenClean :**
 Use a clean plate to clean up blue/red/green screens.
 
+--------------------------------------------------------------------------------------------------------------
+
 ### TRANSFORM
 **ScanSlice :**
 Slice an image in 4 independant directions.
 
-### Warp
+--------------------------------------------------------------------------------------------------------------
+
+### WARP
 **PushPixel :**
 A simple push pixel tool.
 
