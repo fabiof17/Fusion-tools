@@ -39,6 +39,10 @@
 --------------------------------------------------------------------------------------------------------------
 
 ### COLOR
+
+**DespillMadness :**
+Despill tool.
+
 **Firefly_Killer :**
 Removes fireflies, very bright, nervously jumping around pixels.
 
@@ -109,7 +113,9 @@ A simple push pixel tool.
 
 ### Crédits:
 
-**BL : Gizmos originaux conçus par Bertrand Lempereur**
+**BL : Gizmos originaux conçus par Bertrand Lempereur.**
+
+**DespillMadness : Gizmo original conçu par Andreas Frickinger.**
 
 **Firefly_Killer : Gizmo original conçu par Stefan Müller - www.stefanmuller.com**
 
