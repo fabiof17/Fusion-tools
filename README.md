@@ -103,6 +103,9 @@ Use a clean plate to clean up blue/red/green screens.
 **ScanSlice :**
 Slice an image in 4 independant directions.
 
+**UV_to_Vector :**
+Transform a UV pass into a Vector pass.
+
 --------------------------------------------------------------------------------------------------------------
 
 ### WARP
