@@ -1,0 +1,42 @@
+{
+	Tools = ordered() {
+		CopyG_ = MacroOperator {
+			Inputs = ordered() {
+				MainInput1 = InstanceInput {
+					SourceOp = "CopyG",
+					Source = "Background",
+					Name = "Img",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "CopyG",
+					Source = "Foreground",
+					Name = "G",
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "CopyG",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo {
+				Name = "CopyG",
+				Pos = { 0, 0 }
+			},
+			Tools = ordered() {
+				CopyG = ChannelBoolean {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						ToAlpha = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1595, 412.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "CopyG1"
+}
