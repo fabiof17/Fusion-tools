@@ -36,10 +36,10 @@
 					ViewInfo = OperatorInfo { Pos = { 2090, 511.5 } },
 					UserControls = ordered() {
 						Bytes = {
-							INP_MaxAllowed = 32,
+							INP_MaxAllowed = 16,
 							INP_Integer = true,
 							INPID_InputControl = "SliderControl",
-							INP_MaxScale = 32,
+							INP_MaxScale = 16,
 							INP_Default = 2,
 							INP_MinScale = 0,
 							INP_MinAllowed = 0,
