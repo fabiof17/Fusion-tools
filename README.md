@@ -112,6 +112,9 @@ Transform a UV pass into a Vector pass.
 **PushPixel :**
 A simple push pixel tool.
 
+**PushPixel_Fast :**
+A faster push pixel tool.
+
 --------------------------------------------------------------------------------------------------------------
 
 ### Crédits:

@@ -1,0 +1,383 @@
+{
+	Tools = ordered() {
+		PushPixel_Fast = MacroOperator {
+			Inputs = ordered() {
+				Background = InstanceInput {
+					SourceOp = "RGB",
+					Source = "Input",
+					Name = "RGB",
+				},
+				Foreground = InstanceInput {
+					SourceOp = "Alpha",
+					Source = "Input",
+					Name = "Alpha",
+				},
+				Input1 = InstanceInput {
+					SourceOp = "PushPull",
+					Source = "PushPull",
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Displace1",
+					Source = "DistrotSize",
+					Default = 5,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "EdgeSize",
+					Source = "DistortSize",
+					Name = "Edge Size",
+					Default = 5,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "SoftSelect",
+					Source = "XBlurSize",
+					Name = "Soft Select",
+					Default = 5,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "AlphaDivide",
+					Source = "Pre_unpre",
+					Name = "Source is premultiplied",
+					Default = 0,
+				},
+				EffectMask = InstanceInput {
+					SourceOp = "Displace1",
+					Source = "EffectMask",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "AlphaMultiply",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Note1_3_1_1 = Note {
+					Inputs = {
+						Comments = Input { Value = "Alpha", }
+					},
+					ViewInfo = StickyNoteInfo {
+						Pos = { 1640.27, 1072.5 },
+						Flags = {
+							Expanded = true
+						},
+						Size = { 219.656, 73.0719 }
+					},
+				},
+				Note1_3_1 = Note {
+					Inputs = {
+						Comments = Input { Value = "RGB", }
+					},
+					ViewInfo = StickyNoteInfo {
+						Pos = { 1197.03, 1072.5 },
+						Flags = {
+							Expanded = true
+						},
+						Size = { 222.898, 70.8613 }
+					},
+				},
+				RGB = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 1265, 1171.5 } },
+				},
+				Alpha = PipeRouter {
+					NameSet = true,
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 1171.5 } },
+				},
+				Input_RGB = PipeRouter {
+					NameSet = true,
+					Inputs = {
+						Input = Input {
+							SourceOp = "RGB",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 880, 1171.5 } },
+				},
+				Note1_3 = Note {
+					Inputs = {
+						Comments = Input { Value = "Premult / Unpremult", }
+					},
+					ViewInfo = StickyNoteInfo {
+						Pos = { 990, 1303.5 },
+						Flags = {
+							Expanded = true
+						},
+						Size = { 209.929, 63.4925 }
+					},
+				},
+				AlphaDivide = AlphaDivide {
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "Pre_unpre",
+						},
+						Input = Input {
+							SourceOp = "Input_RGB",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 1336.5 } },
+					UserControls = ordered() {
+						Pre_unpre = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "CheckboxControl",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							INP_External = false,
+							CBC_TriState = false,
+							LINKS_Name = "Pre_unpre",
+						}
+					}
+				},
+				Alpha_to_RGB = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 8, },
+						ToGreen = Input { Value = 8, },
+						ToBlue = Input { Value = 8, },
+						ToAlpha = Input { Value = 8, },
+						Background = Input {
+							SourceOp = "Alpha",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 1336.5 } },
+				},
+				CopyAlpha1 = ChannelBoolean {
+					NameSet = true,
+					Inputs = {
+						ToRed = Input { Value = 4, },
+						ToGreen = Input { Value = 4, },
+						ToBlue = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "AlphaDivide",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 1468.5 } },
+				},
+				PipeRouter1 = PipeRouter {
+					Inputs = {
+						Input = Input {
+							SourceOp = "Alpha_to_RGB",
+							Source = "Output",
+						},
+					},
+					ViewInfo = PipeRouterInfo { Pos = { 1705, 1468.5 } },
+				},
+				Note1_1 = Note {
+					Inputs = {
+						Comments = Input { Value = "Edge Size", }
+					},
+					ViewInfo = StickyNoteInfo {
+						Pos = { 1815, 1600.5 },
+						Flags = {
+							Expanded = true
+						},
+						Size = { 209.929, 65.2579 }
+					},
+				},
+				EdgeSize = ErodeDilate {
+					NameSet = true,
+					Inputs = {
+						Red = Input { Value = 0, },
+						Green = Input { Value = 0, },
+						Blue = Input { Value = 0, },
+						XAmount = Input {
+							Value = 0.00025,
+							Expression = "0.00005*(DistortSize)",
+						},
+						Input = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 1633.5 } },
+					UserControls = ordered() {
+						DistortSize = {
+							INP_MaxAllowed = 100,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 100,
+							INP_Default = 5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "EdgeSize",
+						}
+					}
+				},
+				CreateBumpMap = CreateBumpMap {
+					NameSet = true,
+					Inputs = {
+						FilterSize = Input { Value = FuID { "5" }, },
+						Input = Input {
+							SourceOp = "EdgeSize",
+							Source = "Output",
+						},
+						SourceChannel = Input { Value = FuID { "Alpha" }, },
+						HeightScale = Input { Value = 100, },
+						CommentsNest = Input { Value = 0, },
+						FrameRenderScriptNest = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 1732.5 } },
+				},
+				SoftSelect = Blur {
+					NameSet = true,
+					Inputs = {
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						Alpha = Input { Value = 0, },
+						Input = Input {
+							SourceOp = "CreateBumpMap",
+							Source = "Output",
+						},
+						XBlurSize = Input { Value = 5, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 1831.5 } },
+					UserControls = ordered() {
+						XBlurSize = {
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							IC_Steps = 101,
+							INP_MaxScale = 100,
+							INP_Default = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "SoftSelect",
+						}
+					}
+				},
+				Note1 = Note {
+					Inputs = {
+						Comments = Input { Value = "Soft Select", }
+					},
+					ViewInfo = StickyNoteInfo {
+						Pos = { 1815, 1798.5 },
+						Flags = {
+							Expanded = true
+						},
+						Size = { 209.929, 63.4925 }
+					},
+				},
+				Note1_2_1 = Note {
+					Inputs = {
+						Comments = Input { Value = "Size", }
+					},
+					ViewInfo = StickyNoteInfo {
+						Pos = { 825, 1930.5 },
+						Flags = {
+							Expanded = true
+						},
+						Size = { 209.929, 63.4925 }
+					},
+				},
+				Displace1 = Displace {
+					Inputs = {
+						ProcessAlpha = Input { Value = 0, },
+						Type = Input { Value = 1, },
+						Channel = Input { Value = 0, },
+						XOffset = Input { Value = -0.5, },
+						XRefraction = Input {
+							Value = 0.01,
+							Expression = "DistrotSize*0.002",
+						},
+						YOffset = Input { Value = -0.5, },
+						YRefraction = Input {
+							Value = 0.01,
+							Expression = "DistrotSize*0.002",
+						},
+						Input = Input {
+							SourceOp = "CopyAlpha1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "PushPull",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 2029.5 } },
+					UserControls = ordered() {
+						DistrotSize = {
+							INP_MaxAllowed = 100,
+							INP_Integer = false,
+							INPID_InputControl = "SliderControl",
+							INP_MaxScale = 100,
+							INP_Default = 5,
+							INP_MinScale = 0,
+							INP_MinAllowed = 0,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Size",
+						}
+					}
+				},
+				PushPull = ChannelBoolean {
+					CtrlWZoom = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Expression = "1-PushPull", },
+						Operation = Input { Value = 10, },
+						ToBlue = Input { Value = 4, },
+						Background = Input {
+							SourceOp = "SoftSelect",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 1705, 2029.5 } },
+					UserControls = ordered() {
+						PushPull = {
+							{ CCS_AddString = "Push" },
+							{ CCS_AddString = "Pull" },
+							INP_MaxAllowed = 1000000,
+							INP_Integer = false,
+							INPID_InputControl = "ComboControl",
+							CC_LabelPosition = "Horizontal",
+							INP_MaxScale = 1,
+							INP_MinScale = 0,
+							INP_MinAllowed = -1000000,
+							LINKID_DataType = "Number",
+							LINKS_Name = "Mode",
+						}
+					}
+				},
+				Note1_2 = Note {
+					Inputs = {
+						Comments = Input { Value = "Push / Pull", }
+					},
+					ViewInfo = StickyNoteInfo {
+						Pos = { 1815, 1996.5 },
+						Flags = {
+							Expanded = true
+						},
+						Size = { 209.929, 63.4925 }
+					},
+				},
+				AlphaMultiply = AlphaMultiply {
+					NameSet = true,
+					Inputs = {
+						Blend = Input {
+							Value = 0,
+							Expression = "AlphaDivide.Pre_unpre",
+						},
+						Input = Input {
+							SourceOp = "Displace1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 880, 2161.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "PushPixel_Fast"
+}
